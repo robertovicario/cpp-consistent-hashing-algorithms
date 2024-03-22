@@ -58,11 +58,6 @@ class DxHash : public ConsistentHash {
             return size;
         }
 
-        uint32_t getOfflineSize() {
-            return size - num_working;
-        }
-
-
         void resize() {
             int new_size = 1;
             while (new_size <= num_working) {
