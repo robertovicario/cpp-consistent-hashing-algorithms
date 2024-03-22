@@ -37,8 +37,8 @@ int main(int argc, char* argv[]) {
         cout << "#" << endl;
         cout << "#" << endl;
 
-        for (const auto &iter_1: yaml["algorithms"]) {
-            auto algorithm = iter_1["name"].as<string>();
+        for (const auto &iter: yaml["algorithms"]) {
+            auto algorithm = iter["name"].as<string>();
             if (algorithm == "anchor") {
                 /**
                  * ANCHOR
