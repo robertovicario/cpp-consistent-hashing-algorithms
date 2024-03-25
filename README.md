@@ -9,7 +9,7 @@ The implemented algorithms are:
 - [1997] **Ring** by [D. Karger et al.](https://www.cs.princeton.edu/courses/archive/fall09/cos518/papers/chash.pdf)
 - [1998] **Rendezvous** by [Thaler and Ravishankar](https://ieeexplore.ieee.org/abstract/document/663936)
 - [2014] **Jump** by [Lamping and Veach](https://arxiv.org/pdf/1406.2294.pdf)
-- [2015] **Multi-probe** by [Appleton and O’Reilly](https://arxiv.org/pdf/1505.00062.pdf)
+- [2015] **Multi-probe** by [Appleton and O'Reilly](https://arxiv.org/pdf/1505.00062.pdf)
 - [2016] **Maglev** by [D. E. Eisenbud](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf)
 - [2020] **Anchor** by [Gal Mendelson et al.](https://arxiv.org/pdf/1812.09674.pdf)
 - [2021] **Dx** by [Chaos Dong and Fang Wang](https://arxiv.org/pdf/2107.07930.pdf)
