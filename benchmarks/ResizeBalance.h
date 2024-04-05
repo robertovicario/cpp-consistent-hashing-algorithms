@@ -1,5 +1,5 @@
 /**
- * @author Roberto Vicario (C) 2024
+ * @author Roberto Vicario
  */
 
 #pragma once
@@ -10,6 +10,8 @@ using namespace std;
 
 template <typename Algorithm>
 int computeResizeBalance(string algorithm, uint32_t anchor_set, uint32_t working_set) {
-    cout << "# [SYS] ----- @" << algorithm << "\t>_ resize_balance = ... NOT IMPLEMENTED YET" << endl;
+    auto balance = 0;
+    cout << "# [LOG] ----- @" << algorithm << "\t>_ resize_balance = " << balance << endl;
+
     return 0;
 }
