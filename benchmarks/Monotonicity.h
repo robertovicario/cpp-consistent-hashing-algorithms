@@ -1,3 +1,8 @@
+/**
+ * @author Amos Brocco
+ * @author Roberto Vicario
+ */
+
     #include <boost/unordered/unordered_flat_map.hpp>
     #include <boost/unordered_map.hpp>
     #include <cxxopts.hpp>

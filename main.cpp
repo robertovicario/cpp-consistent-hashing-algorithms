@@ -1,5 +1,5 @@
 /**
- * @copyright Roberto Vicario (C) 2024
+ * @author Roberto Vicario
  */
 
 #include <iostream>
@@ -61,6 +61,7 @@ int main(int argc, char* argv[]) {
                 /**
                  * MAGLEV
                  */
+                cerr << "[ERR] ----- Algorithm not implemented yet." << endl;
             } else if (algorithm == "memento") {
                 /**
                  * MEMENTO
@@ -71,6 +72,7 @@ int main(int argc, char* argv[]) {
                 /**
                  * MULTI-PROBE
                  */
+                cerr << "[ERR] ----- Algorithm not implemented yet." << endl;
             } else if (algorithm == "power") {
                 /**
                  * POWER
@@ -81,10 +83,12 @@ int main(int argc, char* argv[]) {
                 /**
                  * RENDEZVOUS
                  */
+                 cerr << "[ERR] ----- Algorithm not implemented yet." << endl;
             } else if (algorithm == "ring") {
                 /**
                  * RING
                  */
+                cerr << "[ERR] ----- Algorithm not implemented yet." << endl;
             }
         }
     } catch (const YAML::Exception& e) {
