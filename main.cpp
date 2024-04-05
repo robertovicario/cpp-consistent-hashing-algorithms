@@ -62,9 +62,6 @@ int main(int argc, char* argv[]) {
                  * MAGLEV
                  */
                 // printMaglev();
-                cerr << "# [ERR] ----- @" << algorithm <<" not implemented yet." << endl;
-                cout << "#" << endl;
-                cout << "#" << endl;
             } else if (algorithm == "memento") {
                 /**
                  * MEMENTO
@@ -76,9 +73,6 @@ int main(int argc, char* argv[]) {
                  * MULTI-PROBE
                  */
                 // printMultiprobe();
-                cerr << "# [ERR] ----- @" << algorithm <<" not implemented yet." << endl;
-                cout << "#" << endl;
-                cout << "#" << endl;
             } else if (algorithm == "power") {
                 /**
                  * POWER
@@ -90,17 +84,11 @@ int main(int argc, char* argv[]) {
                  * RENDEZVOUS
                  */
                 // printRendezvous();
-                cerr << "# [ERR] ----- @" << algorithm <<" not implemented yet." << endl;
-                cout << "#" << endl;
-                cout << "#" << endl;
             } else if (algorithm == "ring") {
                 /**
                  * RING
                  */
                 // printRing();
-                cerr << "# [ERR] ----- @" << algorithm <<" not implemented yet." << endl;
-                cout << "#" << endl;
-                cout << "#" << endl;
             }
         }
     } catch (const YAML::Exception& e) {
