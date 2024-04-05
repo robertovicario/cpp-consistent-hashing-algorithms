@@ -24,12 +24,13 @@ int computeBalance(string algorithm, uint32_t anchor_set,
                 uint32_t working_set, uint32_t num_removals,
                 uint32_t num_keys) {
     Algorithm engine(anchor_set, working_set);
+
+    /**
+     * Selecting random bucket index.
+     */
     random_device rd;
     mt19937 rng(rd());
-    
-    /**
-     * Selecting randomly bucket to remove.
-     */
+
     vector<uint32_t> bucket_status(working_set, 1);
     int i = 0;
     
@@ -51,7 +52,7 @@ int computeBalance(string algorithm, uint32_t anchor_set,
     }
 
     /**
-     * Computing balance.
+     * Starting measuring.
      */
     double mean = static_cast<double>(num_keys) / (working_set - num_removals);
     double balance = 0;
@@ -66,6 +67,9 @@ int computeBalance(string algorithm, uint32_t anchor_set,
         }
     }
 
+    /**
+     * Printing results.
+     */
     cout << "# [LOG] ----- @" << algorithm << "\t>_ balance        = " << balance << endl;
 
     return 0;

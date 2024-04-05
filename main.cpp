@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
                 execute<MementoEngine<boost::unordered_flat_map>>(yaml, "memento", 1000000, 1000000, 20000, 1000000);
             } else if (algorithm == "multi-probe") {
                 /**
-                 * MULTI-PROBE
+                 * MULTIPROBE
                  */
                 // printMultiprobe();
             } else if (algorithm == "power") {

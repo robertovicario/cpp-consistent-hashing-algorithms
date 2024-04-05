@@ -1,6 +1,6 @@
 /**
- * @copyright Roberto Vicario (C) 2024
-*/
+ * @author Roberto Vicario
+ */
 
 #pragma once
 

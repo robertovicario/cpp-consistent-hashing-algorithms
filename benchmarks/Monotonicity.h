@@ -1,30 +1,30 @@
 /**
- * @author Amos Brocco
- * @author Roberto Vicario
- */
+* @author Amos Brocco
+* @author Roberto Vicario
+*/
 
-    #include <boost/unordered/unordered_flat_map.hpp>
-    #include <boost/unordered_map.hpp>
-    #include <cxxopts.hpp>
-    #include <fmt/core.h>
-    #include <fstream>
-    #include <gtl/phmap.hpp>
-    #ifdef USE_PCG32
-    #include "pcg_random.hpp"
-    #include <random>
-    #endif // USE_PCG32
-    #include <unordered_map>
+#include <boost/unordered/unordered_flat_map.hpp>
+#include <boost/unordered_map.hpp>
+#include <cxxopts.hpp>
+#include <fmt/core.h>
+#include <fstream>
+#include <gtl/phmap.hpp>
+#ifdef USE_PCG32
+#include "pcg_random.hpp"
+#include <random>
+#endif // USE_PCG32
+#include <unordered_map>
 
-    using namespace std;
+using namespace std;
 
-    template <typename Algorithm>
-    int computeMonotonicity(const string_view algorithm, const string &filename,
-        uint32_t anchor_set, uint32_t working_set, uint32_t num_removals,
-        uint32_t num_keys) {
+template <typename Algorithm>
+int computeMonotonicity(const string_view algorithm, const string &filename,
+                uint32_t anchor_set, uint32_t working_set, uint32_t num_removals,
+                uint32_t num_keys) {
     Algorithm engine(anchor_set, working_set);
 
-    cout << "# [LOG] ----- @" << algorithm << "\t>_ monotonicity   =" << endl;
-    cout << "              |" << endl;
+    cout << "# [LOG] ----- @" << algorithm << "\t>_ monotonicity   = [" << endl;
+
 
     uint32_t *bucket_status = new uint32_t[anchor_set]();
 
@@ -78,7 +78,7 @@
     #endif
         if (bucket_status[removed] == 1) {
         rnode = engine.removeBucket(removed);
-        cout << "              | \tREMOVED_NODES = " << rnode << endl;
+        cout << "              : \tREMOVED_NODES = " << rnode << endl;
 
         if (!bucket_status[rnode]) {
             throw "Crazy bug";
@@ -113,7 +113,7 @@
                 << "MisplacedRem: " << misplaced << "\t" << num_keys << "\t" << m
                 << "\t" << m << "\tPCG32\n";
     #else
-        cout << "              | \tMISPLACED_KEYS (AFTER REMOVAL) = " << misplaced << "/" << num_keys << endl;
+        cout << "              : \tMISPLACED_KEYS (AFTER REMOVAL) = " << misplaced << "/" << num_keys << endl;
 
         results_file << algorithm << ": "
                 << "MisplacedRem: " << misplaced << "\t" << num_keys << "\t" << m
@@ -124,7 +124,7 @@
     auto anode = engine.addBucket();
     bucket_status[anode] = 1;
 
-        cout << "              | \tADDED_NODES   = " << anode << endl;
+        cout << "              : \tADDED_NODES   = " << anode << endl;
     for (const auto &i : bucket) {
         auto oldbucket = i.second;
         auto a{i.first.first};
@@ -151,7 +151,7 @@
                 << "MisplacedAdd: " << misplaced << "\t" << num_keys << "\t" << m
                 << "\t" << m << "\tPCG32\n";
     #else
-        cout << "              | \tMISPLACED_KEYS (AFTER ADDING)  = " << misplaced << "/" << num_keys << endl;
+        cout << "              : \tMISPLACED_KEYS (AFTER ADDING)  = " << misplaced << "/" << num_keys << endl;
 
         results_file << algorithm << ": "
                 << "MisplacedAdd: " << misplaced << "\t" << num_keys << "\t" << m
@@ -162,8 +162,7 @@
 
     delete[] bucket_status;
 
-    cout << "              |" << endl;
+    cout << "              : ]" << endl;
 
-
-        return 0;
-    }
+    return 0;
+}

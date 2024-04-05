@@ -17,9 +17,6 @@
 
 using namespace std;
 
-/**
- * BENCHMARK ROUTINE
- */
 template<typename Engine>
 static void execute(YAML::Node config, string algorithm,
                 uint32_t anchor_set, uint32_t working_set,

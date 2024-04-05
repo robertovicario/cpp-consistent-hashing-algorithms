@@ -1,5 +1,5 @@
 /**
- * @copyright Roberto Vicario (C) 2024
+ * @author Roberto Vicario
  */
 
 #pragma once
@@ -33,7 +33,7 @@ class DxHash : public ConsistentHash {
             uint32_t key2 = generate32RandomNumber(key);
             uint32_t bs = crc32c_sse42_u64(key, key2);
             uint32_t index = bs % size;
-            uint32_t max_attempts = 4 * size; // Maximum attempts before giving up
+            uint32_t max_attempts = 4 * size;
             uint32_t i = 1;
 
             while (!nodes[index]) {
@@ -42,7 +42,7 @@ class DxHash : public ConsistentHash {
                 i++;
                 if (i >= max_attempts) {
                     *numHash = i;
-                    return -1; // Indicates failure to find a valid node
+                    return -1;
                 }
             }
 
