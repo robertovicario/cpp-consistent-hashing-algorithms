@@ -16,7 +16,7 @@ The implemented algorithms are:
 - [2023] **Power** by [Eric Leu](https://arxiv.org/pdf/2307.12448.pdf)
 - [2023] **Memento** by [M. Coluzzi et al.](https://arxiv.org/pdf/2306.09783.pdf)
 
-### Benchmarks
+### Benchmark
 
 The project includes a benchmarking tool designed explicitly for consistent hashing algorithms.
 The tool allows benchmarking the following metrics in a fair and agnostic way:
@@ -28,6 +28,8 @@ The tool allows benchmarking the following metrics in a fair and agnostic way:
 - **Monotonicity**: The ability of the algorithm to move the minimum amount of resources when the cluster scales.
 - **Resize Balance**: The ability of the algorithm to keep its balance after adding or removing nodes.
 - **Resize Time**: The time the algorithm requires to reorganize its internal structure after adding or removing nodes.
+
+### Configuration
 
 The format of the configuration file is described in detail in the [`configs/template.yaml`](configs/template.yaml) file.
 The tool will use the [`configs/default.yaml`](configs/default.yaml) file that represents the default configuration if no configuration file is provided.
