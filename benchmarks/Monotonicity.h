@@ -78,7 +78,7 @@ int computeMonotonicity(const string_view algorithm, const string &filename,
     #endif
         if (bucket_status[removed] == 1) {
         rnode = engine.removeBucket(removed);
-        cout << "              : \tREMOVED_NODES = " << rnode << endl;
+        cout << "# ----------- \t\tREMOVED_NODES                  = " << rnode << endl;
 
         if (!bucket_status[rnode]) {
             throw "Crazy bug";
@@ -110,21 +110,21 @@ int computeMonotonicity(const string_view algorithm, const string &filename,
         "{}: after removal % misplaced keys are {}% ({} keys out of {})\n", name,
         m * 100, misplaced, num_keys);
     results_file << name << ": "
-                << "MisplacedRem: " << misplaced << "\t" << num_keys << "\t" << m
-                << "\t" << m << "\tPCG32\n";
+                << "MisplacedRem: " << misplaced << "\t\t" << num_keys << "\t\t" << m
+                << "\t\t" << m << "\t\tPCG32\n";
     #else
-        cout << "              : \tMISPLACED_KEYS (AFTER REMOVAL) = " << misplaced << "/" << num_keys << endl;
+        cout << "# ----------- \t\tMISPLACED_KEYS (AFTER REMOVAL) = " << misplaced << "/" << num_keys << endl;
 
         results_file << algorithm << ": "
-                << "MisplacedRem: " << misplaced << "\t" << num_keys << "\t" << m
-                << "\t" << m << "\trand()\n";
+                << "MisplacedRem: " << misplaced << "\t\t" << num_keys << "\t\t" << m
+                << "\t\t" << m << "\t\trand()\n";
     #endif
 
     misplaced = 0;
     auto anode = engine.addBucket();
     bucket_status[anode] = 1;
 
-        cout << "              : \tADDED_NODES   = " << anode << endl;
+        cout << "# ----------- \t\tADDED_NODES                    = " << anode << endl;
     for (const auto &i : bucket) {
         auto oldbucket = i.second;
         auto a{i.first.first};
@@ -148,21 +148,21 @@ int computeMonotonicity(const string_view algorithm, const string &filename,
         "{}: after adding back % misplaced keys are {}% ({} keys out of {})\n",
         name, m * 100, misplaced, num_keys);
     results_file << name << ": "
-                << "MisplacedAdd: " << misplaced << "\t" << num_keys << "\t" << m
-                << "\t" << m << "\tPCG32\n";
+                << "MisplacedAdd: " << misplaced << "\t\t" << num_keys << "\t\t" << m
+                << "\t\t" << m << "\t\tPCG32\n";
     #else
-        cout << "              : \tMISPLACED_KEYS (AFTER ADDING)  = " << misplaced << "/" << num_keys << endl;
+        cout << "# ----------- \t\tMISPLACED_KEYS (AFTER ADDING)  = " << misplaced << "/" << num_keys << endl;
 
         results_file << algorithm << ": "
-                << "MisplacedAdd: " << misplaced << "\t" << num_keys << "\t" << m
-                << "\t" << m << "\trand()\n";
+                << "MisplacedAdd: " << misplaced << "\t\t" << num_keys << "\t\t" << m
+                << "\t\t" << m << "\t\trand()\n";
     #endif
 
     results_file.close();
 
     delete[] bucket_status;
 
-    cout << "              : ]" << endl;
+    cout << "# ----------- ]" << endl;
 
     return 0;
 }
