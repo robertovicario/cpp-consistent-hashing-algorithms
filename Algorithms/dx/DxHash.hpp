@@ -31,13 +31,13 @@ class DxHash : public ConsistentHash {
 
         uint32_t getNodeID(uint32_t key, uint32_t *numHash) override {
             uint32_t key2 = generate32RandomNumber(key);
-            uint32_t bs = crc32c_sse42_u64(key, key2);
+            uint32_t bs = crc32c(key, key2);
             uint32_t index = bs % size;
             uint32_t max_attempts = 4 * size;
             uint32_t i = 1;
 
             while (!nodes[index]) {
-                bs = crc32c_sse42_u64(bs, key2);
+                bs = crc32c(bs, key2);
                 index = bs % size;
                 i++;
                 if (i >= max_attempts) {
@@ -52,11 +52,11 @@ class DxHash : public ConsistentHash {
 
         uint32_t getInactiveNodeID(uint32_t key) {
             uint32_t key2 = generate32RandomNumber(key);
-            uint32_t bs = crc32c_sse42_u64(key, key2);
+            uint32_t bs = crc32c(key, key2);
             uint32_t index = bs % size;
             uint32_t i = 1;
             while (nodes[index]) {
-                bs = crc32c_sse42_u64(bs, key2);
+                bs = crc32c(bs, key2);
                 index = bs % size;
                 i += 1;
                 if (i >= 4 * size) {

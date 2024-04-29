@@ -5,13 +5,13 @@
 #include <iostream>
 #include <yaml-cpp/yaml.h>
 
-#include "algorithms/anchor/anchorengine.h"
-#include "algorithms/dx/DxEngine.h"
-#include "algorithms/jump/jumpengine.h"
-#include "algorithms/memento/mementoengine.h"
-#include "algorithms/power/powerengine.h"
-#include "benchmarks/Routine.h"
-#include "utils/AlgorithmsASCII.h"
+#include "Algorithms/anchor/anchorengine.h"
+#include "Algorithms/dx/DxEngine.h"
+#include "Algorithms/jump/jumpengine.h"
+#include "Algorithms/memento/mementoengine.h"
+#include "Algorithms/power/powerengine.h"
+#include "Benchmarks/Routine.h"
+#include "ASCII/ASCII.h"
 
 using namespace std;
 
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
         YAML::Node yaml = YAML::LoadFile(fileName);
 
         /**
-         * Starting benchmark routine.
+         * Starting Benchmarks routine.
          */
         cout << "# [SYS] ----- ****************************" << endl;
         cout << "# [SYS] ----- ***** STARTING ROUTINE *****" << endl;
@@ -100,7 +100,7 @@ int main(int argc, char* argv[]) {
     }
 
     /**
-     * Closing benchmark routine.
+     * Closing Benchmarks routine.
      */
     cout << "# [SYS] ----- *****************************" << endl;
     cout << "# [SYS] ----- ***** ROUTINE COMPLETED *****" << endl;

@@ -1,12 +1,9 @@
 /**
- * @copyright Roberto Vicario (C) 2024
+ * @author Roberto Vicario
 */
 
 #pragma once
 
-/**
- *
- */
 class ConsistentHash {
 public:
     virtual ~ConsistentHash() = default;

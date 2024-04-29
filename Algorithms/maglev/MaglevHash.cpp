@@ -9,7 +9,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include "../../misc/crc32c_sse42_u64.h"
+#include "../../misc/HashFunctions.h"
 #include "MaglevHash.h"
 
 MaglevHash::MaglevHash(uint32_t w, uint32_t t): M(t), workSet(), lookupTable(new uint32_t [t]()), 
@@ -50,7 +50,7 @@ void MaglevHash::updatePermutation(){
     set<uint32_t>::iterator iter;
     for(iter = workSet.begin(), i = 0; iter != workSet.end(); iter++, i++){
         permutationOffset[i] = generate32RandomNumber(*iter) % M;
-        permutationSkip[i] = crc32c_sse42_u64(*iter, permutationOffset[i]) % (M - 1) + 1;
+        permutationSkip[i] = crc32c(*iter, permutationOffset[i]) % (M - 1) + 1;
     }
 }
 
@@ -91,7 +91,7 @@ uint32_t MaglevHash::getSize(){
 uint32_t MaglevHash::getNodeID(uint32_t key, uint32_t* ASL){
     *ASL = 1;
     uint32_t key2 = generate32RandomNumber(key);
-    uint32_t bs = crc32c_sse42_u64(key, key2) % M;
+    uint32_t bs = crc32c(key, key2) % M;
     return lookupTable[bs];
 }
 

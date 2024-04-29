@@ -40,7 +40,7 @@ Clone the repository and navigate to the cloned repository:
 
 ```shell
 git clone https://github.com/robertovicario/cpp-consistent-hashing-algorithms.git
-cd cpp-consistent-hashing-algorithms
+cd cpp-consistent-hashing-Algorithms
 ```
 
 Run repository setup with vcpkg and CMake:

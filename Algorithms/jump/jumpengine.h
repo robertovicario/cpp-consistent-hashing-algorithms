@@ -34,7 +34,7 @@ public:
    */
     uint32_t getBucketCRC32c(uint64_t key, uint64_t seed) noexcept
     {
-        uint64_t hash = crc32c_sse42_u64(key, seed);
+        uint64_t hash = crc32c(key, seed);
         int64_t b = 1, j = 0;
         while (j < m_num_buckets) {
             b = j;

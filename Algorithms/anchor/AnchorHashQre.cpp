@@ -85,14 +85,14 @@ uint32_t AnchorHashQre::ComputeTranslation(uint32_t i , uint32_t j) {
 uint32_t AnchorHashQre::ComputeBucket(uint64_t key1 , uint64_t key2) {
 								
 	// First hash is uniform on the anchor set
-	uint32_t bs = crc32c_sse42_u64(key1, key2);
+	uint32_t bs = crc32c(key1, key2);
 	uint32_t b = bs % M;
 						
 	// Loop until hitting a working bucket
 	while (A[b] != 0) {	
 			
 		// New candidate (bs - for better balance - avoid patterns)			
-		bs = crc32c_sse42_u64(key1 - bs, key2 + bs);
+		bs = crc32c(key1 - bs, key2 + bs);
 		uint32_t h = bs % A[b];
 				
 		//  h is working or observed by bucket

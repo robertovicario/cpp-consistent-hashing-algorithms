@@ -1,3 +1,4 @@
+# Set CMake info
 cmake_minimum_required(VERSION 3.15)
 project(cpp-consistent-hashing LANGUAGES CXX)
 
@@ -33,17 +34,17 @@ endif()
 
 # Define sources
 set(MAIN_SOURCES
-        algorithms/anchor/AnchorHashQre.cpp
-        algorithms/anchor/AnchorHashQre.hpp
-        algorithms/anchor/anchorengine.h
-        algorithms/dx/DxEngine.h
-        algorithms/jump/jumpengine.h
-        algorithms/memento/mashtable.h
-        algorithms/memento/memento.h
-        algorithms/memento/mementoengine.h
-        algorithms/misc/HashFunctions.h
-        algorithms/power/powerengine.h
-        benchmarks/Routine.h
+        Algorithms/anchor/AnchorHashQre.cpp
+        Algorithms/anchor/AnchorHashQre.hpp
+        Algorithms/anchor/anchorengine.h
+        Algorithms/dx/DxEngine.h
+        Algorithms/jump/jumpengine.h
+        Algorithms/memento/mashtable.h
+        Algorithms/memento/memento.h
+        Algorithms/memento/mementoengine.h
+        Algorithms/misc/HashFunctions.h
+        Algorithms/power/powerengine.h
+        Benchmarks/Routine.h
         main.cpp
         vcpkg.json
 )
@@ -61,7 +62,12 @@ if(WITH_PCG32)
 endif()
 
 # Link libraries
-target_link_libraries(main PRIVATE xxHash::xxhash fmt::fmt cxxopts::cxxopts yaml-cpp)
+target_link_libraries(main PRIVATE
+        xxHash::xxhash
+        fmt::fmt
+        cxxopts::cxxopts
+        yaml-cpp
+)
 
 # Install target
 include(GNUInstallDirs)

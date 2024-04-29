@@ -1,4 +1,4 @@
-# Configurations that will apply to every benchmark.
+# Configurations that will apply to every Benchmarks.
 common:
     output-folder: /tmp
 

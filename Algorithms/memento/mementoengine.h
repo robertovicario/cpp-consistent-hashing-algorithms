@@ -90,7 +90,7 @@ public:
    * @return the related bucket
    */
   uint32_t getBucketCRC32c(uint64_t key, uint64_t seed) const noexcept {
-    const auto hash = crc32c_sse42_u64(key, seed);
+    const auto hash = crc32c(key, seed);
     /*
      * We invoke JumpHash to get a bucket
      * in the range [0,bArraySize-1].
@@ -112,7 +112,7 @@ public:
        * represents the size of the working set when the bucket
        * was removed and get a new bucket in [0,replacer-1].
        */
-      const auto h = crc32c_sse42_u64(key, b);
+      const auto h = crc32c(key, b);
       b = h % replacer;
 
       /*

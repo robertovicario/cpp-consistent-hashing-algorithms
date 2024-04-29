@@ -56,7 +56,7 @@ auto print_memory_stats = [&](std::string_view label) noexcept {
 
 /*
  * ******************************************
- * Benchmark routine
+ * Benchmarks routine
  * ******************************************
  */
 

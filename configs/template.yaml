@@ -1,24 +1,24 @@
-# Configurations that will apply to every benchmark.
+# Configurations that will apply to every Benchmarks.
 common:
-    # Defines if the garbage collector should be called before every benchmark.
+    # Defines if the garbage collector should be called before every Benchmarks.
     # Default value is true.
     gc: true
 
-    # Folder containing the benchmark results.
+    # Folder containing the Benchmarks results.
     output-folder: /tmp
 
-    # Number of times a single benchmark will be executed.
+    # Number of times a single Benchmarks will be executed.
     iterations:
-        # Number of non-recorded iterations of a benchmark. Used to warm up the JVM.
-        # The warm-up iterations will not be run for benchmarks that doesn't benefit from it.
+        # Number of non-recorded iterations of a Benchmarks. Used to warm up the JVM.
+        # The warm-up iterations will not be run for Benchmarks that doesn't benefit from it.
         # Default value is 5.
         warmup: 5
 
-        # How many times a single benchmark will be executed.
+        # How many times a single Benchmarks will be executed.
         # Default value is 5.
-        execution: 5
+        run: 5
 
-    # Configurations that apply only to time based benchmarks.
+    # Configurations that apply only to time based Benchmarks.
     time:
         # The time unit the results refer to.
         # Possible values are: SECONDS, MILLISECONDS, MICROSECONDS, NANOSECONDS
@@ -44,7 +44,7 @@ common:
     # Benchmarks will run for every specified cluster size.
     init-nodes: [10, 100, 1000, 10000]
 
-    # Hash functions used by the consistent hashing algorithms.
+    # Hash functions used by the consistent hashing Algorithms.
     # The list shows the currently implemented functions.
     # Benchmarks will run for every specified function.
     hash-functions:
@@ -65,7 +65,7 @@ common:
       # Custom keys are loaded from a text file (one per row).
       - custom
 
-# List of algorithms to be benchmarked. The list shows the currently implemented CH algorithms.
+# List of Algorithms to be benchmarked. The list shows the currently implemented CH Algorithms.
 # If you add an algorithm called MyAlgo, the tool will search for a class named "MyAlgoFactory"
 # that implements the ConsistentHashFactory interface. Every entry in the list must provide
 # the algorithm name and an optional list of arguments to use during creation.
@@ -108,30 +108,30 @@ algorithms:
           virtualNodes: 1000
 
 
-# Lists the benchmarks to be executed.
-# The list shows the currently implemented benchmarks.
+# Lists the Benchmarks to be executed.
+# The list shows the currently implemented Benchmarks.
 benchmarks: 
 
     # Benchmarks the time needed by an algorithm to initialize its internal data structure.
     - name: init-time
       # Can be used to override any common configuration.
       common:
-      # Used to define any benchmark specific argument.
+      # Used to define any Benchmarks specific argument.
       args:
 
     # Benchmarks the time needed to find which node a given key belongs.
     - name: lookup-time
       # Can be used to override any common configuration.
       common:
-      # Used to define any benchmark specific argument.
+      # Used to define any Benchmarks specific argument.
       args:
           # A number 0 <= x < 1 defining the percentage of initial nodes to remove
-          # before performing the benchmark. This value defaults to 0
+          # before performing the Benchmarks. This value defaults to 0
           # (The value cannot be 1 because 100% of the nodes cannot be removed).
           removal-rate: 0
           # Defines the order of nodes removal. Valid values for this property are:
           # FIFO, LIFO, and RANDOM. This value defaults to LIFO.
-          # Note that not all the algorithms support any removal order.
+          # Note that not all the Algorithms support any removal order.
           # For example Jump supports removals only in LIFO order.
           removal-order: lifo
 
@@ -139,23 +139,23 @@ benchmarks:
     - name: resize-time
       # Can be used to override any common configuration.
       common:
-      # Used to define any benchmark specific argument.
+      # Used to define any Benchmarks specific argument.
       args:
 
     # Benchmarks the amount of RAM (in bytes) used by the algorithm.
     - name: memory-usage
       # Can be used to override any common configuration.
       common:
-      # Used to define any benchmark specific argument.
+      # Used to define any Benchmarks specific argument.
       args:
 
     # Benchmarks the distribution of the keys among the nodes of the cluster.
     - name: balance
       # Can be used to override any common configuration.
       common:
-      # Used to define any benchmark specific argument.
+      # Used to define any Benchmarks specific argument.
       args:
-        # The benchmark will be executed over a number of keys that is calculated by: keyMultiplier * cluster-nodes.
+        # The Benchmarks will be executed over a number of keys that is calculated by: keyMultiplier * cluster-nodes.
         # Default value is 100.
         key-multiplier: 100
 
@@ -163,7 +163,7 @@ benchmarks:
     - name: resize-balance
       # Can be used to override any common configuration.
       common:
-      # Used to define any benchmark specific argument.
+      # Used to define any Benchmarks specific argument.
       args:
           # See keyMultiplier on BenchmarkBalance.
           # Default value is 100.
@@ -173,11 +173,11 @@ benchmarks:
     - name: monotonicity
       # Can be used to override any common configuration.
       common:
-      # Used to define any benchmark specific argument.
+      # Used to define any Benchmarks specific argument.
       args:
           # Percentage of nodes to remove. The provided value must be >= 0 and < 1).
           # At least one value must be provided.
-          # The benchmark will run for every specified value.
+          # The Benchmarks will run for every specified value.
           fractions: [0.1, 0.3, 0.5]
 
           # See keyMultiplier on BenchmarkBalance.
