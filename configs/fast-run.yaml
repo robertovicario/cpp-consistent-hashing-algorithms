@@ -1,6 +1,6 @@
 # Configurations that will apply to every Benchmarks.
 common:
-    output-folder: /tmp
+    output-folder: tmp/
 
     iterations:
         warmup: 1

@@ -47,6 +47,7 @@ set(MAIN_SOURCES
         Benchmarks/Routine.h
         main.cpp
         vcpkg.json
+        Handler/HandlerImpl.h
 )
 
 # Sort filenames alphabetically

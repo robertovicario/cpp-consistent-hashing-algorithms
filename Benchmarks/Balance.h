@@ -3,24 +3,15 @@
  * @author Roberto Vicario
  */
 
+#pragma once
+
 #include <iostream>
 #include <random>
 
 using namespace std;
 
-/**
- * Computes the balance of a given algorithm.
- *
- * @tparam Algorithm Type of algorithm to compute balance for.
- * @param algorithm Name or identifier of the algorithm.
- * @param anchor_set Size of the anchor set.
- * @param working_set Size of the working set.
- * @param num_removals Number of removals from the working set.
- * @param num_keys Number of keys to absorb into the anchor set.
- * @return 0 if successful.
- */
 template <typename Algorithm>
-int computeBalance(string algorithm, uint32_t anchor_set,
+double computeBalance(string algorithm, uint32_t anchor_set,
                 uint32_t working_set, uint32_t num_removals,
                 uint32_t num_keys) {
     Algorithm engine(anchor_set, working_set);
@@ -72,5 +63,5 @@ int computeBalance(string algorithm, uint32_t anchor_set,
      */
     cout << "# [LOG] ----- @" << algorithm << "\t>_ balance        = " << balance << endl;
 
-    return 0;
+    return balance;
 }

@@ -5,7 +5,7 @@ common:
     gc: true
 
     # Folder containing the Benchmarks results.
-    output-folder: /tmp
+    output-folder: tmp/
 
     # Number of times a single Benchmarks will be executed.
     iterations:
