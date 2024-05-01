@@ -5,9 +5,13 @@
 #include <iostream>
 #include <yaml-cpp/yaml.h>
 
-#include "Algorithms/dx/DxEngine.h"
-#include "Benchmarks/Routine.h"
-#include "Handler/HandlerImpl.h"
+#include "Algorithms/anchor/anchorengine.h"
+#include "Algorithms/dx/DxEngine.hpp"
+#include "Algorithms/jump/jumpengine.h"
+#include "Algorithms/memento/mementoengine.h"
+#include "Algorithms/power/powerengine.h"
+#include "Benchmarks/Routine.hpp"
+#include "Handler/HandlerImpl.hpp"
 
 using namespace std;
 
@@ -38,13 +42,37 @@ int main(int argc, char* argv[]) {
         /**
          * Starting the benchmark routine.
          */
-        /*
         for (auto i : yaml["algorithms"]) {
             auto algorithm = i["name"].as<string>();
+            if (algorithm == "anchor") {
+                /**
+                 * ANCHOR
+                 */
+                // execute<AnchorEngine>("anchor", handler, yaml);
+            } else if (algorithm == "dx") {
+                /**
+                 * DX
+                 */
+                execute<DxEngine>("dx", handler, yaml);
+            } else if (algorithm == "jump") {
+                /**
+                 * JUMP
+                 */
+                // execute<JumpEngine>("jump", handler, yaml);
+            } else if (algorithm == "memento") {
+                /**
+                 * MEMENTO
+                 */
+                // execute<MementoEngine<boost::unordered_flat_map>>("memento", handler, yaml);
+            } else if (algorithm == "power") {
+                /**
+                 * POWER
+                 */
+                // execute<PowerEngine>("power", handler, yaml);
+            } else {
+                break;
+            }
         }
-        */
-
-        execute<DxEngine>(handler, yaml);
     } catch (const YAML::Exception& e) {
         cout << "# [ERR] ----- Exception: " << e.what() << endl;
         return 1;

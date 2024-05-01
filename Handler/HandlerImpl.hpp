@@ -59,7 +59,7 @@ public:
 
         file.open(path, ios::out | ios::app);
         if (file.is_open()) {
-            file << "algorithm,benchmark,hash_function,init_nodes,iterations,mean,variance\n";
+            file << "algorithm,benchmark,hash_function,init_nodes,iterations,mean,variance,standard_deviation\n";
             cout << "# [SYS] ----- CSV file created successfully." << endl;
             cout << "#" << endl;
         } else {
@@ -74,24 +74,14 @@ public:
         file.close();
     }
 
-    void updateData(const string& algorithm, const string& benchmark,
-                    const string& hash_function, int init_nodes,
-                    int iterations, double mean,
-                    double variance) {
+    void updateData(const string& algorithm, const string& benchmark, const string& hash_function, int init_nodes, int iterations, double mean, double variance, double standardDeviation) {
         /**
          * Updating new data to the CSV file.
         */
         cout << "# [SYS] ----- Updating new data to the CSV file ..." << endl;
 
         if (file.is_open()) {
-            file <<
-                algorithm << "," <<
-                benchmark << "," <<
-                hash_function << "," <<
-                init_nodes << "," <<
-                iterations << "," <<
-                mean << "," <<
-                variance << "\n";
+            file << algorithm << "," << benchmark << "," << hash_function << "," << init_nodes << "," << iterations << "," << mean << "," << variance << "," << standardDeviation << "\n";
             cout << "# [SYS] ----- Data updated successfully." << endl;
         } else {
             cout << "# [ERR] ----- Unable to update data to CSV file." << endl;

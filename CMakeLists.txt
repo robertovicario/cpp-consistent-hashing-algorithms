@@ -37,21 +37,19 @@ set(MAIN_SOURCES
         Algorithms/anchor/AnchorHashQre.cpp
         Algorithms/anchor/AnchorHashQre.hpp
         Algorithms/anchor/anchorengine.h
-        Algorithms/dx/DxEngine.h
+        Algorithms/dx/DxEngine.hpp
         Algorithms/jump/jumpengine.h
         Algorithms/memento/mashtable.h
         Algorithms/memento/memento.h
         Algorithms/memento/mementoengine.h
         Algorithms/misc/HashFunctions.h
         Algorithms/power/powerengine.h
-        Benchmarks/Routine.h
+        Benchmarks/Routine.hpp
+        Benchmarks/Metrics.h
+        Handler/HandlerImpl.hpp
         main.cpp
         vcpkg.json
-        Handler/HandlerImpl.h
 )
-
-# Sort filenames alphabetically
-list(SORT MAIN_SOURCES)
 
 # Add executable
 add_executable(main ${MAIN_SOURCES})

@@ -1,20 +1,3 @@
-# Configurations that will apply to every Benchmarks.
-common:
-    output-folder: tmp/
-
-    iterations:
-        warmup: 1
-        run: 1
-
-    time:
-        warmup: 1
-        run: 1
-
-    init-nodes: [10]
-
-    hash-functions:
-        - xx
-
 algorithms:
     - name: anchor
     - name: dx
@@ -25,17 +8,29 @@ algorithms:
     - name: power
     - name: rendezvous
     - name: ring
-
-benchmarks: 
+benchmarks:
+    - name: balance
     - name: init-time
     - name: lookup-time
       args:
           distributions:
-            - uniform
-    - name: resize-time
+              - uniform
     - name: memory-usage
-    - name: balance
-    - name: resize-balance
     - name: monotonicity
       args:
-          fractions: [0.1]
+          fractions:
+              - 0.1
+    - name: resize-balance
+    - name: resize-time
+common:
+    hash-functions:
+        - xx
+    init-nodes:
+        - 10
+    iterations:
+        run: 1
+        warmup: 1
+    output-folder: tmp/
+    time:
+        run: 1
+        warmup: 1
