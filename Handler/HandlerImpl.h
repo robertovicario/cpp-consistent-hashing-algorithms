@@ -85,13 +85,13 @@ public:
 
         if (file.is_open()) {
             file <<
-                 algorithm << "," <<
-                 benchmark << "," <<
-                 hash_function << "," <<
-                 init_nodes << "," <<
-                 iterations << "," <<
-                 mean << "," <<
-                 variance << "\n";
+                algorithm << "," <<
+                benchmark << "," <<
+                hash_function << "," <<
+                init_nodes << "," <<
+                iterations << "," <<
+                mean << "," <<
+                variance << "\n";
             cout << "# [SYS] ----- Data updated successfully." << endl;
         } else {
             cout << "# [ERR] ----- Unable to update data to CSV file." << endl;

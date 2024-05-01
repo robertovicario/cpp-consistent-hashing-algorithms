@@ -5,11 +5,10 @@
 #pragma once
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include <yaml-cpp/yaml.h>
 
-#include "Balance.h"
-#include "../Algorithms/dx/DxEngine.h"
+#include "InitTime.h"
 #include "../Handler/HandlerImpl.h"
 
 using namespace std;
@@ -26,6 +25,7 @@ double computeMean(const double results[], int size) {
 double computeVariance(const double results[], int size) {
     double mean = computeMean(results, size);
     double sumSquaredDiff = 0;
+
     for (int i = 0; i < size; i++) {
         sumSquaredDiff += pow(results[i] - mean, 2);
     }
@@ -34,7 +34,7 @@ double computeVariance(const double results[], int size) {
 }
 
 template <typename Engine>
-static void execute(HandlerImpl& handler, YAML::Node yaml, const string& algorithm) {
+static void execute(HandlerImpl& handler, YAML::Node yaml) {
     /**
      * Executing the benchmark routine.
      */
@@ -50,7 +50,7 @@ static void execute(HandlerImpl& handler, YAML::Node yaml, const string& algorit
         // auto benchmark = i["name"].as<string>();
         /**
          * ![WARNING]
-         * For this version of the software, we are using only "crc32".
+         * For this version of the software, we used only "crc32".
          */
         for (auto j: yaml["common"]["hash-functions"]) {
             auto hashFunction = j.as<string>();
@@ -60,20 +60,22 @@ static void execute(HandlerImpl& handler, YAML::Node yaml, const string& algorit
                  */
                 for (auto k: yaml["common"]["init-nodes"]) {
                     auto initNodes = k.as<int>();
+
+                    cout << "# [LOG] ----- Benchmark  : (name = " << "balance" << ")" << endl;
+                    cout << "# [LOG] ----- Parameters : (algorithm = " << "dx" << ", hash_function = " << hashFunction << ", init_nodes = " << initNodes << ")" << endl;
+                    cout << "# [LOG] ----- Iterations : (warmup = " << 0 << ", run = " << iterationsRun << ")" << endl;
+                    cout << "#" << endl;
+
                     /**
                      * ITERATIONS_RUN
                      */
                     for (int l = 0; l < iterationsRun; l++) {
-                        results[l] = computeBalance<Engine>(algorithm, initNodes, initNodes, initNodes, initNodes);
+                        results[l] = computeInitTime<Engine>("dx", initNodes, initNodes);
                         if (l == iterationsRun - 1) {
-                            cout << "# [LOG] ----- Benchmark: (name = " << "balance" << ")" << endl;
-                            cout << "# [LOG] ----- Parameters: (algorithm = " << algorithm << ", hash_function = " << hashFunction << ", init_nodes = " << initNodes << ")" << endl;
-                            cout << "# [LOG] ----- Iterations: (warmup = " << 0 << ", run = " << iterationsRun << ")" << endl;
                             cout << "#" << endl;
-
                             mean = computeMean(results, iterationsRun);
                             variance = computeVariance(results, iterationsRun);
-                            handler.updateData(algorithm, "balance", hashFunction, initNodes, iterationsRun, mean, variance);
+                            handler.updateData("dx", "balance", hashFunction, initNodes, iterationsRun, mean, variance);
                         }
                     }
                 }

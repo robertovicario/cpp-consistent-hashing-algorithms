@@ -5,6 +5,7 @@
 #include <iostream>
 #include <yaml-cpp/yaml.h>
 
+#include "Algorithms/dx/DxEngine.h"
 #include "Benchmarks/Routine.h"
 #include "Handler/HandlerImpl.h"
 
@@ -29,11 +30,6 @@ int main(int argc, char* argv[]) {
         auto pathCSV = yaml["common"]["output-folder"].as<string>();
         HandlerImpl handler(pathCSV + "results.csv");
 
-        cout << "# [SYS] ----- *******************************" << endl;
-        cout << "# [SYS] ----- ***** OPERATION COMPLETED *****" << endl;
-        cout << "# [SYS] ----- *******************************" << endl;
-        cout << "#" << endl;
-
         cout << "# [SYS] ----- ****************************" << endl;
         cout << "# [SYS] ----- ***** STARTING ROUTINE *****" << endl;
         cout << "# [SYS] ----- ****************************" << endl;
@@ -48,7 +44,7 @@ int main(int argc, char* argv[]) {
         }
         */
 
-        execute<DxEngine>(handler, yaml, "dx");
+        execute<DxEngine>(handler, yaml);
     } catch (const YAML::Exception& e) {
         cout << "# [ERR] ----- Exception: " << e.what() << endl;
         return 1;

@@ -1,6 +1,5 @@
 /**
- * @author Amos Brocco
- * @author Roberto Vicario
+ * @authors Amos Brocco, Roberto Vicario
  */
 
 #pragma once
@@ -14,10 +13,13 @@ template <typename Algorithm>
 double computeBalance(string algorithm, uint32_t anchor_set,
                 uint32_t working_set, uint32_t num_removals,
                 uint32_t num_keys) {
+    /**
+     * Initializing the engine.
+     */
     Algorithm engine(anchor_set, working_set);
 
     /**
-     * Selecting random bucket index.
+     * Selecting a random bucket index.
      */
     random_device rd;
     mt19937 rng(rd());
@@ -35,7 +37,7 @@ double computeBalance(string algorithm, uint32_t anchor_set,
     }
 
     /**
-     * Absorbing keys into anchor set.
+     * Absorbing keys into an anchor set.
      */
     vector<uint32_t> absorbed_keys(anchor_set, 0);
     for (i = 0; i < num_keys; i++) {
@@ -43,7 +45,7 @@ double computeBalance(string algorithm, uint32_t anchor_set,
     }
 
     /**
-     * Starting measuring.
+     * Starting the measuring.
      */
     double mean = static_cast<double>(num_keys) / (working_set - num_removals);
     double balance = 0;
@@ -54,7 +56,7 @@ double computeBalance(string algorithm, uint32_t anchor_set,
                 balance = absorbed_keys[i] / mean;
             }
         } else if (0 < absorbed_keys[i]) {
-            cerr << "# [ERR] ----- There was an error processing node " << i << "." <<endl;
+            cerr << "# [ERR] ----- Unable to process the node." << endl;
         }
     }
 
@@ -62,6 +64,5 @@ double computeBalance(string algorithm, uint32_t anchor_set,
      * Printing results.
      */
     cout << "# [LOG] ----- @" << algorithm << "\t>_ balance        = " << balance << endl;
-
     return balance;
 }
