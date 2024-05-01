@@ -71,13 +71,16 @@ static void execute(HandlerImpl& handler, YAML::Node yaml) {
                      */
                     for (int l = 0; l < iterationsRun; l++) {
                         results[l] = computeInitTime<Engine>("dx", initNodes, initNodes);
-                        if (l == iterationsRun - 1) {
-                            cout << "#" << endl;
-                            mean = computeMean(results, iterationsRun);
-                            variance = computeVariance(results, iterationsRun);
-                            handler.updateData("dx", "balance", hashFunction, initNodes, iterationsRun, mean, variance);
-                        }
                     }
+
+                    cout << "#" << endl;
+
+                    /**
+                     * Updating new data to the CSV file.
+                     */
+                    mean = computeMean(results, iterationsRun);
+                    variance = computeVariance(results, iterationsRun);
+                    handler.updateData("dx", "balance", hashFunction, initNodes, iterationsRun, mean, variance);
                 }
             }
         }
