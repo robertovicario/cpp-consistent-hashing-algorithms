@@ -59,7 +59,7 @@ public:
 
         file.open(path, ios::out | ios::app);
         if (file.is_open()) {
-            file << "algorithm,benchmark,hash_function,init_nodes,iterations,mean,variance,standard_deviation\n";
+            file << "algorithm,benchmark,hash_function,init_nodes,iterations,mean,var,stddev\n";
             cout << "# [SYS] ----- CSV file created successfully." << endl;
             cout << "#" << endl;
         } else {
