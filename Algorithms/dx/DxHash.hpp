@@ -16,7 +16,7 @@ class DxHash : public ConsistentHash {
         uint32_t size{};
 
     public:
-        DxHash(uint32_t n_total, uint32_t n_working) : size(n_total), num_working(n_working), nodes() {
+        DxHash(uint32_t initNodes) : size(initNodes), num_working(initNodes), nodes() {
             nodes.resize(size);
 
             uint32_t i;

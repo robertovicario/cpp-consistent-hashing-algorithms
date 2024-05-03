@@ -1,44 +1,49 @@
 /**
+ * @file ResizeTime.h
+ * @brief A utility for computing resize time of a data structure after removing a bucket.
  * @author Roberto Vicario
  */
 
 #pragma once
 
 #include <chrono>
+#include <cmath>
 #include <iostream>
 #include <random>
 
 using namespace std;
 using namespace std::chrono;
 
-template <typename Algorithm>
-int computeResizeTime(string algorithm, uint32_t anchor_set,
-                uint32_t working_set) {
-    Algorithm engine(anchor_set, working_set);
+template <typename Engine>
+int computeResizeTime(const string& algorithm, uint32_t initNodes) {
+    /*
+     * Initializing the engine.
+     */
+    Engine engine(initNodes);
 
-    /**
-     * Selecting random bucket index.
+    /*
+     * Selecting a random bucket index.
      */
     random_device rd;
     mt19937 rng(rd());
-    uint32_t index = rng() % working_set;
+    uint32_t index = rng() % initNodes;
 
-    /**
-     * Starting measuring.
+    /*
+     * Starting the measuring.
      */
     auto start{clock()};
 
-    vector<uint32_t> bucket_status(working_set, 1);
+    vector<uint32_t> bucket_status(initNodes, 1);
     auto removed_node = engine.removeBucket(index);
     bucket_status[removed_node] = 0;
 
     auto end{clock()};
 
-    /**
-     * Printing results.
+    /*
+     * Returning the results.
      */
-    auto time{static_cast<double>(end - start) / CLOCKS_PER_SEC};
-    cout << "# [LOG] ----- @" << algorithm << "\t>_ resize_time    = " << time << " seconds" << endl;
+    auto time{static_cast<double>(end - start) / CLOCKS_PER_SEC * pow(10, 9)};
+    cout << "# [LOG] ----- @" << algorithm << "\t>_ resize_time = " << time << " ns" << endl;
 
     return 0;
 }

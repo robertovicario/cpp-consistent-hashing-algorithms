@@ -1,4 +1,6 @@
 /**
+ * @file HandlerImpl.hpp
+ * @brief Header file containing the implementation of a handler for updating CSV files with benchmark data.
  * @author Roberto Vicario
  */
 

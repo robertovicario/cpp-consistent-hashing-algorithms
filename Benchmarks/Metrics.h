@@ -1,4 +1,6 @@
 /**
+ * @file Metrics.h
+ * @brief Header file containing functions for metrics computations.
  * @author Roberto Vicario
  */
 

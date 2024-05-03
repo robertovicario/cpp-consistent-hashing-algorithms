@@ -1,4 +1,6 @@
 /**
+ * @file Main.cpp
+ * @brief Main file for executing benchmark routines.
  * @author Roberto Vicario
  */
 
@@ -49,7 +51,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * ANCHOR
                  */
-                execute<AnchorEngine>("anchor", handler, yaml);
+                // execute<AnchorEngine>("anchor", handler, yaml);
             } else if (algorithm == "dx") {
                 /*
                  * DX
@@ -59,7 +61,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * JUMP
                  */
-                execute<JumpEngine>("jump", handler, yaml);
+                // execute<JumpEngine>("jump", handler, yaml);
             } else if (algorithm == "memento") {
                 /*
                  * MEMENTO
@@ -69,7 +71,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * POWER
                  */
-                execute<PowerEngine>("power", handler, yaml);
+                // execute<PowerEngine>("power", handler, yaml);
             } else {
                 break;
             }

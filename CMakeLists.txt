@@ -47,7 +47,7 @@ set(MAIN_SOURCES
         Benchmarks/Routine.hpp
         Benchmarks/Metrics.h
         Handler/HandlerImpl.hpp
-        main.cpp
+        Main.cpp
         vcpkg.json
 )
 
