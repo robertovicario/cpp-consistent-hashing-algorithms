@@ -43,7 +43,7 @@ set(MAIN_SOURCES
         Algorithms/memento/memento.h
         Algorithms/memento/mementoengine.h
         Algorithms/misc/HashFunctions.h
-        Algorithms/power/powerengine.h
+        Algorithms/power/PowerEngine.h
         Benchmarks/Metrics.h
         Benchmarks/Routine.hpp
         Handler/HandlerImpl.hpp

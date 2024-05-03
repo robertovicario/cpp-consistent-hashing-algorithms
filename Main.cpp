@@ -9,7 +9,7 @@
 #include "Algorithms/dx/DxEngine.hpp"
 #include "Algorithms/jump/JumpEngine.hpp"
 #include "Algorithms/memento/mementoengine.h"
-#include "Algorithms/power/powerengine.h"
+#include "Algorithms/power/PowerEngine.h"
 #include "Benchmarks/Routine.hpp"
 #include "Handler/HandlerImpl.hpp"
 
@@ -69,9 +69,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * POWER
                  */
-                // execute<PowerEngine>("power", handler, yaml);
-            } else {
-                break;
+                execute<PowerEngine>("power", handler, yaml);
             }
         }
     } catch (const YAML::Exception& e) {

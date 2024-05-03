@@ -22,8 +22,8 @@
 
 class PowerEngine final {
 public:
-    PowerEngine(uint32_t, uint32_t working_nodes)
-        : m_n{working_nodes}, m_m{smallestPow2(m_n)}, m_mH{m_m >> 1}, m_mHm1{m_mH - 1}, m_mm1{m_m - 1}
+    PowerEngine(uint32_t initNodes)
+        : m_n{initNodes}, m_m{smallestPow2(m_n)}, m_mH{m_m >> 1}, m_mHm1{m_mH - 1}, m_mm1{m_m - 1}
     {}
 
     /**
