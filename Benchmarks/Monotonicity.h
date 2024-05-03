@@ -1,7 +1,6 @@
 /**
-* @author Amos Brocco
-* @author Roberto Vicario
-*/
+ * @authors Amos Brocco, Roberto Vicario
+ */
 
 #include <boost/unordered/unordered_flat_map.hpp>
 #include <boost/unordered_map.hpp>

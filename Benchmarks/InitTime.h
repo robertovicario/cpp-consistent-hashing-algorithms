@@ -1,6 +1,4 @@
 /**
- * @file initTime.hpp
- * @brief Contains a function to compute initialization time for algorithms.
  * @author Roberto Vicario
  */
 

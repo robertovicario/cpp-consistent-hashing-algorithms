@@ -1,6 +1,4 @@
 /**
- * @file Main.cpp
- * @brief Main file for executing benchmark routines.
  * @author Roberto Vicario
  */
 

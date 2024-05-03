@@ -5,13 +5,24 @@
 #pragma once
 
 #include <iostream>
+
 using namespace std;
 
-template <typename Algorithm>
-int computeMemoryUsage(string algorithm, uint32_t anchor_set, uint32_t working_set) {
-    Algorithm engine(anchor_set, working_set);
-    size_t size = sizeof(engine);
-    cout << "# [LOG] ----- @" << algorithm << "\t>_ memory_usage   = " << size << " bytes" << endl;
+template <typename Engine>
+double computeMemoryUsage(const string& algorithm, uint32_t initNodes) {
+    /*
+     * Initializing the engine.
+     */
+    Engine engine(initNodes);
 
-    return 0;
+    /*
+     * Starting the measuring.
+     */
+    double size = sizeof(engine);
+
+    /*
+     * Returning the results.
+     */
+    cout << "# [LOG] ----- @" << algorithm << "\t>_ memory_usage = " << size << " B" << endl;
+    return size;
 }

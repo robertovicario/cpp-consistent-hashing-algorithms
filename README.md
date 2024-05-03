@@ -38,32 +38,44 @@ The tool will use the [`configs/default.yaml`](configs/default.yaml) file that r
 
 Clone the repository and navigate to the cloned repository:
 
-```shell
+```sh
 git clone https://github.com/robertovicario/cpp-consistent-hashing-algorithms.git
 cd cpp-consistent-hashing-Algorithms
 ```
 
-Run repository setup with vcpkg and CMake:
+Run repository setup:
 
-```shell
-# Ensure script has executable permissions:
-# chmod +x repo.sh
-./repo.sh
-./cmake.sh
-```
+- vcpkg:
+    ```sh
+    # Ensure scripts has executable permissions:
+    # chmod +x repo.sh
+    ./repo.sh
+    ```
+
+- CMake:
+    ```sh
+    # Ensure scripts has executable permissions:
+    # chmod +x cmake.sh
+    ./cmake.sh
+    ```
 
 Build the project with Ninja:
 
-```shell
+```sh
 cd build
 ninja
 ```
 
 Start the framework:
 
-```shell
-./main <configuration>.yaml
-```
+- Default configuration:
+    ```sh
+    ./main
+    ```
+- Custom configuration:
+    ```sh
+    ./main <configuration>.yaml
+    ```
 
 ## Licence
 
@@ -73,7 +85,22 @@ This project is distributed under [GNU General Public License version 3](https:/
 > 
 > ### Credits
 > 
-> - The foundation of this framework draws inspiration from [java-consistent-hashing-algorithms](https://github.com/SUPSI-DTI-ISIN/java-consistent-hashing-algorithms.git), initially developed by Massimo Coluzzi from the Institute of Information Systems and Networking (ISIN) at SUPSI.
+> We believe in acknowledging the contributions of those who have made this project possible. Below are the individuals and technologies that have played a significant role:
+> 
+> - **java-consistent-hashing-algorithms**:
+>   - **Author**: [SUPSI-DTI-ISIN](https://github.com/SUPSI-DTI-ISIN)
+>   - **License**: [GNU General Public License version 3](https://opensource.org/license/gpl-3-0)
+>   - **Source**: [GitHub Repository](https://github.com/SUPSI-DTI-ISIN/java-consistent-hashing-algorithms.git)
+>
+> - **cpp-anchorhash**:
+>   - **Author**: [anchorhash](https://github.com/anchorhash)
+>   - **License**: [The MIT License](https://opensource.org/license/mit)
+>   - **Source**: [GitHub Repository](https://github.com/anchorhash/cpp-anchorhash.git)
+> 
+> - **DxHash**:
+>   - **Author**: [ChaosD](https://github.com/ChaosD)
+>   - **License**: none
+>   - **Source**: [GitHub Repository](https://github.com/ChaosD/DxHash.git)
 
 ## Contacts
 

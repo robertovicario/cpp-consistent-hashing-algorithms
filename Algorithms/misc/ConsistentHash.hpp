@@ -1,6 +1,4 @@
 /**
- * @file ConsistentHash.hpp
- * @brief Header file for ConsistentHash class.
  * @author Roberto Vicario
  */
 

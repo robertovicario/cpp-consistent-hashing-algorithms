@@ -1,6 +1,4 @@
 /**
- * @file Routine.hpp
- * @brief Header file containing functions to execute benchmarks.
  * @author Roberto Vicario
  */
 
@@ -90,14 +88,14 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
                         /*
                          * LOOKUP_TIME
                          */
-                        // printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
                         // results[k] = computeInitTime<Engine>(algorithm, initNodes);
                     } else if (benchmark == "memory-usage") {
                         /*
                          * MEMORY_USAGE
                          */
-                        // printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[k] = computeInitTime<Engine>(algorithm, initNodes);
+                        printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[k] = computeMemoryUsage<Engine>(algorithm, initNodes);
                     } else if (benchmark == "monotonicity") {
                         /*
                          * MONOTONICITY

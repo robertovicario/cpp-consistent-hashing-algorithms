@@ -1,6 +1,4 @@
 /**
- * @file ResizeTime.h
- * @brief A utility for computing resize time of a data structure after removing a bucket.
  * @author Roberto Vicario
  */
 
@@ -15,7 +13,7 @@ using namespace std;
 using namespace std::chrono;
 
 template <typename Engine>
-int computeResizeTime(const string& algorithm, uint32_t initNodes) {
+double computeResizeTime(const string& algorithm, uint32_t initNodes) {
     /*
      * Initializing the engine.
      */
@@ -44,6 +42,5 @@ int computeResizeTime(const string& algorithm, uint32_t initNodes) {
      */
     auto time{static_cast<double>(end - start) / CLOCKS_PER_SEC * pow(10, 9)};
     cout << "# [LOG] ----- @" << algorithm << "\t>_ resize_time = " << time << " ns" << endl;
-
-    return 0;
+    return time;
 }

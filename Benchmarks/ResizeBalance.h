@@ -57,7 +57,7 @@ double computeResizeBalance(const string& algorithm, const uint32_t& initNodes) 
                 balance = absorbedKeys[i] / mean;
             }
         } else if (absorbedKeys[i] > 0) {
-            cerr << "# [ERR] ----- Error encountered processing node " << i << "." << endl;
+            cerr << "# [ERR] ----- Unable to process the node: " << i << "." << endl;
         }
     }
 

@@ -1,6 +1,4 @@
 /**
- * @file Metrics.h
- * @brief Header file containing functions for metrics computations.
  * @author Roberto Vicario
  */
 
@@ -8,9 +6,6 @@
 
 #include <cmath>
 
-/**
- * @brief Computes the mean of an array of numbers.
- */
 double computeMean(const double results[], int size) {
     double sum = 0;
     for (int i = 0; i < size; i++) {
@@ -19,9 +14,6 @@ double computeMean(const double results[], int size) {
     return sum / size;
 }
 
-/**
- * @brief Computes the variance of an array of numbers.
- */
 double computeVar(const double results[], int size) {
     double mean = computeMean(results, size);
     double sumSquaredDiff = 0;
@@ -33,9 +25,6 @@ double computeVar(const double results[], int size) {
     return sumSquaredDiff / size;
 }
 
-/**
- * @brief Computes the standard deviation of an array of numbers.
- */
 double computeStdDev(const double results[], int size) {
     return sqrt(computeVar(results, size));
 }
