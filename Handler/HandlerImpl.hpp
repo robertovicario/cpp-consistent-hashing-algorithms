@@ -17,11 +17,11 @@ private:
     string pathCsv;
 
 public:
-    HandlerImpl(const string& path) {
+    HandlerImpl(const string& pathCsv) {
         /*
          * Building the constructor.
          */
-        this->pathCsv = path;
+        this->pathCsv = pathCsv;
 
         /*
          * Configuring the system.
@@ -62,8 +62,9 @@ public:
         string filename = pathCsv;
         while (ifstream(filename)) {
             count++;
-            size_t extensionIndex = path.find_last_of(".");
+            size_t extensionIndex = pathCsv.find_last_of(".");
             filename = pathCsv.substr(0, extensionIndex) + "-" + to_string(count) + pathCsv.substr(extensionIndex);
+            this->pathCsv = filename;
         }
 
         file.open(filename, ios::out | ios::app);
