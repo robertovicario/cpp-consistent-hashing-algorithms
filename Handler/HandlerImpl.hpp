@@ -1,6 +1,4 @@
 /**
- * @file HandlerImpl.hpp
- * @brief Header file containing the implementation of a handler for updating CSV files with benchmark data.
  * @author Roberto Vicario
  */
 
@@ -60,7 +58,15 @@ public:
          */
         cout << "# [SYS] ----- Creating ..." << endl;
 
-        file.open(pathCsv, ios::out | ios::app);
+        int count = 0;
+        string filename = pathCsv;
+        while (ifstream(filename)) {
+            count++;
+            size_t extensionIndex = path.find_last_of(".");
+            filename = pathCsv.substr(0, extensionIndex) + "-" + to_string(count) + pathCsv.substr(extensionIndex);
+        }
+
+        file.open(filename, ios::out | ios::app);
         if (file.is_open()) {
             file << "algorithm,benchmark,hash_function,init_nodes,iterations,mean,var,stddev\n";
             cout << "# [SYS] ----- CSV file created successfully." << endl;
