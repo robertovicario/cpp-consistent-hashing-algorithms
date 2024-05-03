@@ -100,7 +100,7 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
                         /*
                          * MONOTONICITY
                          */
-                        // printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
                         // results[k] = computeInitTime<Engine>(algorithm, initNodes);
                     } else if (benchmark == "resize-balance") {
                         /*
@@ -113,7 +113,7 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
                          * RESIZE_TIME
                          */
                         printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        results[k] = computeResizeTime<Engine>(algorithm, initNodes);
+                        // results[k] = computeResizeTime<Engine>(algorithm, initNodes);
                     } else {
                         flag = true;
                         break;
