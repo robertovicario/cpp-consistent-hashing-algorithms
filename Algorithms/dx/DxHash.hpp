@@ -9,8 +9,6 @@
 #include "../misc/ConsistentHash.hpp"
 #include "../misc/HashFunctions.h"
 
-using namespace std;
-
 class DxHash : public ConsistentHash {
 private:
     std::vector<bool> nodes;

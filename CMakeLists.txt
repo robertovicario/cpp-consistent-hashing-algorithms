@@ -44,8 +44,8 @@ set(MAIN_SOURCES
         Algorithms/memento/mementoengine.h
         Algorithms/misc/HashFunctions.h
         Algorithms/power/powerengine.h
-        Benchmarks/Routine.hpp
         Benchmarks/Metrics.h
+        Benchmarks/Routine.hpp
         Handler/HandlerImpl.hpp
         Main.cpp
         vcpkg.json
