@@ -70,7 +70,7 @@ Start the framework:
     ./main <your_config>.yaml
     ```
 
-## How to Contribute
+## Contributing
 
 ### Adding New Algorithms
 

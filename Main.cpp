@@ -7,7 +7,7 @@
 
 #include "Algorithms/anchor/anchorengine.h"
 #include "Algorithms/dx/DxEngine.hpp"
-#include "Algorithms/jump/jumpengine.h"
+#include "Algorithms/jump/JumpEngine.hpp"
 #include "Algorithms/memento/mementoengine.h"
 #include "Algorithms/power/powerengine.h"
 #include "Benchmarks/Routine.hpp"
@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * JUMP
                  */
-                // execute<JumpEngine>("jump", handler, yaml);
+                execute<JumpEngine>("jump", handler, yaml);
             } else if (algorithm == "memento") {
                 /*
                  * MEMENTO

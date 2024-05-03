@@ -4,7 +4,7 @@
 
 #pragma once
 
-static inline uint32_t crc32c(uint32_t key, uint32_t seed) {
+static inline uint32_t crc32(uint32_t key, uint32_t seed) {
     #ifdef __x86_64
         __asm__ volatile("crc32q %[key], %[seed];"
                         : [seed] "+r"(seed)

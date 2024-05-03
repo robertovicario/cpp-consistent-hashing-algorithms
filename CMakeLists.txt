@@ -38,7 +38,7 @@ set(MAIN_SOURCES
         Algorithms/anchor/AnchorHashQre.hpp
         Algorithms/anchor/anchorengine.h
         Algorithms/dx/DxEngine.hpp
-        Algorithms/jump/jumpengine.h
+        Algorithms/jump/JumpEngine.hpp
         Algorithms/memento/mashtable.h
         Algorithms/memento/memento.h
         Algorithms/memento/mementoengine.h

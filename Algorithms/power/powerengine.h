@@ -37,7 +37,7 @@ public:
     uint32_t getBucketCRC32c(uint64_t key, uint64_t seed) noexcept
     {
         pcg32 rng;
-        auto k = crc32c(key, seed);
+        auto k = crc32(key, seed);
         // r1 = f (key, m) (we pass m-1 because f expects that)
         auto r1 = f(k, m_mm1, rng);
         if (r1 < m_n) {

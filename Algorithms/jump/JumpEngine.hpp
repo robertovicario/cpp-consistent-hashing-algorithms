@@ -13,16 +13,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef JUMPENGINE_H
-#define JUMPENGINE_H
+
+#pragma once
+
 #include <cstdint>
 #include "../misc/HashFunctions.h"
 
 class JumpEngine final {
+private:
+    uint32_t initNodes;
+
 public:
-    JumpEngine(uint32_t, uint32_t working_set)
-        : m_num_buckets{working_set}
-    {}
+    explicit JumpEngine(uint32_t initNodes) : initNodes{initNodes} {}
 
     /**
    * Returns the bucket where the given key should be mapped.
@@ -32,15 +34,16 @@ public:
    * @param seed the initial seed for CRC32c
    * @return the related bucket
    */
-    uint32_t getBucketCRC32c(uint64_t key, uint64_t seed) noexcept
-    {
-        uint64_t hash = crc32c(key, seed);
+    uint32_t getBucketCRC32c(uint64_t key, uint64_t seed) {
+        uint64_t hash = crc32(key, seed);
         int64_t b = 1, j = 0;
-        while (j < m_num_buckets) {
+
+        while (j < initNodes) {
             b = j;
             hash = hash * 2862933555777941757ULL + 1;
             j = (b + 1) * (double(1LL << 31) / double((hash >> 33) + 1));
         }
+
         return b;
     }
 
@@ -49,7 +52,7 @@ public:
    *
    * @return the added bucket
    */
-    uint32_t addBucket() noexcept { return m_num_buckets++; }
+    uint32_t addBucket() noexcept { return initNodes++; }
 
     /**
    * Removes the given bucket from the engine.
@@ -58,13 +61,7 @@ public:
    *
    * @return the removed bucket
    */
-    uint32_t removeBucket(uint32_t) noexcept
-    {
-        return --m_num_buckets;
+    uint32_t removeBucket(uint32_t index) {
+        return --initNodes;
     }
-
-private:
-    uint32_t m_num_buckets;
 };
-
-#endif // JUMPENGINE_H

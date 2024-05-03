@@ -17,12 +17,7 @@ private:
     string pathCsv;
 
 public:
-    HandlerImpl(const string& pathCsv) {
-        /*
-         * Building the constructor.
-         */
-        this->pathCsv = pathCsv;
-
+    HandlerImpl(const string& pathCsv) : pathCsv(pathCsv) {
         /*
          * Configuring the system.
          */
