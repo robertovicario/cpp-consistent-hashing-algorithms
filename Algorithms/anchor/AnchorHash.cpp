@@ -19,13 +19,13 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-#include "AnchorHashQre.hpp"
+#include "AnchorHash.hpp"
 #include "../misc/HashFunctions.h"
 
 using namespace std;
 
 /** Constructor */
-AnchorHashQre::AnchorHashQre (uint32_t a, uint32_t w) {
+AnchorHash::AnchorHash (uint32_t a, uint32_t w) {
 	
 	// Allocate the anchor array	
 	A = new uint32_t [a]();
@@ -59,7 +59,7 @@ AnchorHashQre::AnchorHashQre (uint32_t a, uint32_t w) {
 }
 
 /** Destructor */
-AnchorHashQre::~AnchorHashQre () {
+AnchorHash::~AnchorHash () {
 	
 	delete [] A;		    
 	delete [] W;	
@@ -68,7 +68,7 @@ AnchorHashQre::~AnchorHashQre () {
 
 }
 
-uint32_t AnchorHashQre::ComputeTranslation(uint32_t i , uint32_t j) {
+uint32_t AnchorHash::ComputeTranslation(uint32_t i , uint32_t j) {
 	
 	if (i == j) return K[i];
 	
@@ -82,7 +82,7 @@ uint32_t AnchorHashQre::ComputeTranslation(uint32_t i , uint32_t j) {
 
 }
 
-uint32_t AnchorHashQre::ComputeBucket(uint64_t key1 , uint64_t key2) {
+uint32_t AnchorHash::ComputeBucket(uint64_t key1 , uint64_t key2) {
 								
 	// First hash is uniform on the anchor set
 	uint32_t bs = crc32(key1, key2);
@@ -111,7 +111,7 @@ uint32_t AnchorHashQre::ComputeBucket(uint64_t key1 , uint64_t key2) {
 										
 }
 
-uint32_t AnchorHashQre::UpdateRemoval(uint32_t b) {
+uint32_t AnchorHash::UpdateRemoval(uint32_t b) {
 
 	// update reserved stack
 	r.push(b);
@@ -133,7 +133,7 @@ uint32_t AnchorHashQre::UpdateRemoval(uint32_t b) {
 															
 }
 
-uint32_t AnchorHashQre::UpdateNewBucket() {
+uint32_t AnchorHash::UpdateNewBucket() {
 
 	// Who was removed last?	
 	uint32_t b = r.top();							

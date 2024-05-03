@@ -13,14 +13,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef ANCHORENGINE_H
-#define ANCHORENGINE_H
-#include "AnchorHashQre.hpp"
+
+#pragma once
+
+#include "AnchorHash.hpp"
 
 class AnchorEngine final {
+private:
+    AnchorHash m_anchor;
+
 public:
-    AnchorEngine(uint32_t anchor_set, uint32_t working_set)
-        : m_anchor{anchor_set, working_set}
+    AnchorEngine(uint32_t initNodes)
+        : m_anchor{initNodes, initNodes}
     {}
 
     /**
@@ -54,9 +58,4 @@ public:
         m_anchor.UpdateRemoval(bucket);
         return bucket;
     }
-
-private:
-  AnchorHashQre m_anchor;
 };
-
-#endif // ANCHORENGINE_H

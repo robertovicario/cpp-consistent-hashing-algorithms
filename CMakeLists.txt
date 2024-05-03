@@ -34,9 +34,9 @@ endif()
 
 # Define sources
 set(MAIN_SOURCES
-        Algorithms/anchor/AnchorHashQre.cpp
-        Algorithms/anchor/AnchorHashQre.hpp
-        Algorithms/anchor/anchorengine.h
+        Algorithms/anchor/AnchorHash.cpp
+        Algorithms/anchor/AnchorHash.hpp
+        Algorithms/anchor/AnchorEngine.h
         Algorithms/dx/DxEngine.hpp
         Algorithms/jump/JumpEngine.hpp
         Algorithms/memento/mashtable.h

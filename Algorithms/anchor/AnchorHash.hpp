@@ -24,7 +24,7 @@
 #include <stdint.h>
 
 /** Class declaration */
-class AnchorHashQre {
+class AnchorHash {
 	
   private:
 	
@@ -54,9 +54,9 @@ class AnchorHashQre {
 					
   public:
   
-	AnchorHashQre (uint32_t, uint32_t);
+	AnchorHash (uint32_t, uint32_t);
 	
-	~AnchorHashQre();
+	~AnchorHash();
 		
 	uint32_t ComputeBucket(uint64_t, uint64_t);
         

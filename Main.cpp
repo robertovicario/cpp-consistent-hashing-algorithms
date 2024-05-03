@@ -5,7 +5,7 @@
 #include <iostream>
 #include <yaml-cpp/yaml.h>
 
-#include "Algorithms/anchor/anchorengine.h"
+#include "Algorithms/anchor/AnchorEngine.h"
 #include "Algorithms/dx/DxEngine.hpp"
 #include "Algorithms/jump/JumpEngine.hpp"
 #include "Algorithms/memento/mementoengine.h"
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * ANCHOR
                  */
-                // execute<AnchorEngine>("anchor", handler, yaml);
+                execute<AnchorEngine>("anchor", handler, yaml);
             } else if (algorithm == "dx") {
                 /*
                  * DX
