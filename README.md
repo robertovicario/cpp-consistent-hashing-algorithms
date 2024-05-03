@@ -4,8 +4,6 @@
 
 This project collects C++ implementations of the most prominent consistent hashing algorithms for non-peer-to-peer contexts.
 
-The implemented algorithms are:
-
 - [1997] **Ring** by [D. Karger et al.](https://www.cs.princeton.edu/courses/archive/fall09/cos518/papers/chash.pdf)
 - [1998] **Rendezvous** by [Thaler and Ravishankar](https://ieeexplore.ieee.org/abstract/document/663936)
 - [2014] **Jump** by [Lamping and Veach](https://arxiv.org/pdf/1406.2294.pdf)
@@ -16,13 +14,10 @@ The implemented algorithms are:
 - [2023] **Power** by [Eric Leu](https://arxiv.org/pdf/2307.12448.pdf)
 - [2023] **Memento** by [M. Coluzzi et al.](https://arxiv.org/pdf/2306.09783.pdf)
 
-### Benchmark
-
-The project includes a benchmarking tool designed explicitly for consistent hashing algorithms.
-The tool allows benchmarking the following metrics in a fair and agnostic way:
+### Benchmarks
 
 - **Balance**: The ability of the algorithm to spread the keys evenly across the cluster nodes.
-- **Init Time**: The time the algorithm requires to initialize its internal structure.
+- **Initialization Time**: The time the algorithm requires to initialize its internal structure.
 - **Lookup Time**: The time the algorithm needs to find the node a given key belongs to.
 - **Memory Usage**: The amount of memory the algorithm uses to store its internal structure.
 - **Monotonicity**: The ability of the algorithm to move the minimum amount of resources when the cluster scales.
@@ -74,8 +69,31 @@ Start the framework:
     ```
 - Custom configuration:
     ```sh
-    ./main <configuration>.yaml
+    ./main <your_config>.yaml
     ```
+
+## How to Contribute
+
+### Adding New Algorithms
+
+1. Insert the algorithm name into any configuration file located in `configs/`.
+2. Implement your algorithm in `Algorithms/your_algo/`. Keep in mind that the system employs C++ templates to integrate the algorithms into the loop.
+3. Integrate a new execution routine into `Main.cpp`. Append a new `else if` branch and incorporate your engine using:
+    ```cpp
+    execute<YourEngine>("your_algo", handler, yaml);
+    ```
+
+### Adding New Benchmarks
+
+To incorporate a new benchmark, follow these steps:
+
+1. Insert the benchmark name into any configuration file located in `configs/`.
+2. Implement the benchmark in `Benchmarks/`. Create a function named `computeYourBenchmark` within it, accepting parameters `const string& algorithm` and `uint32_t initNodes`. Note that the system utilizes C++ templates for benchmark integration into the loop.
+3. Integrate a new benchmark routine into `Benchmarks/Routine.hpp`. Append a new `else if` branch and incorporate your engine using:
+  ```cpp
+  printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+  results[k] = computeYourBenchmark<Engine>(algorithm, initNodes);
+  ```
 
 ## Licence
 
