@@ -15,15 +15,12 @@ double computeBalance(const string& algorithm, uint32_t initNodes) {
     Engine engine(initNodes);
 
     /*
-     * Selecting the random bucket index.
+     * Absorbing keys into the anchor set.
      */
     random_device rd;
     mt19937 rng(rd());
-
-    /*
-     * Absorbing keys into the anchor set.
-     */
     vector<uint32_t> absorbed_keys(initNodes, 0);
+
     for (int i = 0; i < initNodes; i++) {
         absorbed_keys[engine.getBucketCRC32c(rng(), rng())] += 1;
     }
