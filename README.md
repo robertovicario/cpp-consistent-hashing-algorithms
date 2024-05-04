@@ -6,11 +6,11 @@ This project collects C++ implementations of the most prominent consistent hashi
 
 ### Algorithms
 
-- [2014] **Jump** by [Lamping and Veach](https://arxiv.org/pdf/1406.2294.pdf)
-- [2020] **Anchor** by [Gal Mendelson et al.](https://arxiv.org/pdf/1812.09674.pdf)
-- [2021] **Dx** by [Chaos Dong and Fang Wang](https://arxiv.org/pdf/2107.07930.pdf)
-- [2023] **Power** by [Eric Leu](https://arxiv.org/pdf/2307.12448.pdf)
-- [2023] **Memento** by [M. Coluzzi et al.](https://arxiv.org/pdf/2306.09783.pdf)
+- [2014] **Jump** by [Lamping et al.](https://arxiv.org/pdf/1406.2294.pdf)
+- [2020] **Anchor** by [Mendelson et al.](https://arxiv.org/pdf/1812.09674.pdf)
+- [2021] **Dx** by [Dong et al.](https://arxiv.org/pdf/2107.07930.pdf)
+- [2023] **Power** by [Leu et al.](https://arxiv.org/pdf/2307.12448.pdf)
+- [2023] **Memento** by [Coluzzi et al.](https://arxiv.org/pdf/2306.09783.pdf)
 
 ### Benchmarks
 
