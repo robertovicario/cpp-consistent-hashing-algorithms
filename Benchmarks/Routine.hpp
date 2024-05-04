@@ -89,7 +89,7 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
                          * LOOKUP_TIME
                          */
                         printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[k] = computeInitTime<Engine>(algorithm, initNodes);
+                        results[k] = computeLookupTime<Engine>(algorithm, initNodes);
                     } else if (benchmark == "memory-usage") {
                         /*
                          * MEMORY_USAGE
@@ -107,13 +107,13 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
                          * RESIZE_BALANCE
                          */
                         printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        results[k] = computeResizeBalance<Engine>(algorithm, initNodes);
+                        // results[k] = computeResizeBalance<Engine>(algorithm, initNodes);
                     } else if (benchmark == "resize-time") {
                         /*
                          * RESIZE_TIME
                          */
                         printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[k] = computeResizeTime<Engine>(algorithm, initNodes);
+                        results[k] = computeResizeTime<Engine>(algorithm, initNodes);
                     } else {
                         flag = true;
                         break;

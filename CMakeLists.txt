@@ -49,6 +49,7 @@ set(MAIN_SOURCES
         Handler/HandlerImpl.hpp
         Main.cpp
         vcpkg.json
+        Benchmarks/LookupTime.h
 )
 
 # Add executable

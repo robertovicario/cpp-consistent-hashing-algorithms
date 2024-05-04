@@ -20,34 +20,22 @@ double computeBalance(const string& algorithm, uint32_t initNodes) {
     random_device rd;
     mt19937 rng(rd());
 
-    vector<uint32_t> bucket_status(initNodes, 1);
-    uint32_t i = 0;
-
-    uint32_t numRemovals = initNodes / 5;
-    while (i < numRemovals) {
-        uint32_t index = rng() % initNodes;
-        if (bucket_status[index] == 1) {
-            auto removed_node = engine.removeBucket(index);
-            bucket_status[removed_node] = 0;
-            i++;
-        }
-    }
-
     /*
      * Absorbing keys into the anchor set.
      */
     vector<uint32_t> absorbed_keys(initNodes, 0);
-    for (i = 0; i < initNodes; i++) {
+    for (int i = 0; i < initNodes; i++) {
         absorbed_keys[engine.getBucketCRC32c(rng(), rng())] += 1;
     }
 
     /*
      * Starting the measuring.
      */
-    double mean = static_cast<double>(initNodes) / (initNodes - numRemovals);
+    double mean = static_cast<double>(initNodes) / initNodes;
     double balance = 0;
+    vector<uint32_t> bucket_status(initNodes, 1);
 
-    for (i = 0; i < initNodes; i++) {
+    for (int i = 0; i < initNodes; i++) {
         if (bucket_status[i]) {
             if (balance < (absorbed_keys[i] / mean)) {
                 balance = absorbed_keys[i] / mean;
@@ -57,7 +45,7 @@ double computeBalance(const string& algorithm, uint32_t initNodes) {
         }
     }
 
-    /**
+    /*
      * Returning the results.
      */
     cout << "# [LOG] ----- @" << algorithm << "\t>_ balance = " << balance << endl;

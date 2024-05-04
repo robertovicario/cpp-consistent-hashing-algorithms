@@ -14,9 +14,9 @@ benchmarks:
     - name: lookup-time
       args:
           distributions:
-              - uniform
-              - normal
               - custom
+              - normal
+              - uniform
     - name: memory-usage
     - name: monotonicity
       args:

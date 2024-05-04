@@ -57,9 +57,9 @@ double computeResizeBalance(const string& algorithm, uint32_t initNodes) {
         }
     }
 
-    /**
+    /*
      * Returning the results.
      */
-    cout << "# [LOG] ----- @" << algorithm << "\t>_ balance = " << balance << endl;
+    cout << "# [LOG] ----- @" << algorithm << "\t>_ resize_balance = " << balance << endl;
     return balance;
 }
