@@ -8,7 +8,7 @@
 #include "Algorithms/anchor/AnchorEngine.h"
 #include "Algorithms/dx/DxEngine.hpp"
 #include "Algorithms/jump/JumpEngine.hpp"
-#include "Algorithms/memento/mementoengine.h"
+#include "Algorithms/memento/MementoEngine.h"
 #include "Algorithms/power/PowerEngine.h"
 #include "Benchmarks/Routine.hpp"
 #include "Handler/HandlerImpl.hpp"
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * MEMENTO
                  */
-                // execute<MementoEngine<boost::unordered_flat_map>>("memento", handler, yaml);
+                execute<MementoEngine<boost::unordered_multimap>>("memento", handler, yaml);
             } else if (algorithm == "power") {
                 /*
                  * POWER

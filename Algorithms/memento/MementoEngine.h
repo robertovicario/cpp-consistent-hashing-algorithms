@@ -13,9 +13,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef MEMENTOENGINE_H
-#define MEMENTOENGINE_H
-#include "memento.h"
+
+#pragma once
+
+#include "MementoHash.h"
 #include "../misc/HashFunctions.h"
 #include <string_view>
 #include <xxhash.h>
@@ -28,8 +29,8 @@ public:
    *
    * @param size          initial number of working buckets (0 < size)
    */
-  MementoEngine(uint32_t, uint32_t size)
-      : m_lastRemoved{size}, m_bArraySize{size} {}
+  MementoEngine(uint32_t initNodes)
+      : m_lastRemoved{initNodes}, m_bArraySize{initNodes} {}
 
   /**
    * Returns the bucket where the given key should be mapped.
@@ -208,9 +209,7 @@ private:
     return b;
   }
 
-  Memento<MementoMap> m_memento;
+  MementoHash<MementoMap> m_memento;
   uint32_t m_bArraySize;
   uint32_t m_lastRemoved;
 };
-
-#endif // MEMENTOENGINE_H

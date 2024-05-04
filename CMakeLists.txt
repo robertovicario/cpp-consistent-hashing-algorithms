@@ -39,9 +39,9 @@ set(MAIN_SOURCES
         Algorithms/anchor/AnchorEngine.h
         Algorithms/dx/DxEngine.hpp
         Algorithms/jump/JumpEngine.hpp
-        Algorithms/memento/mashtable.h
-        Algorithms/memento/memento.h
-        Algorithms/memento/mementoengine.h
+        Algorithms/memento/MashTable.h
+        Algorithms/memento/MementoHash.h
+        Algorithms/memento/MementoEngine.h
         Algorithms/misc/HashFunctions.h
         Algorithms/power/PowerEngine.h
         Benchmarks/Metrics.h

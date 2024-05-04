@@ -18,7 +18,7 @@
  */
 
 template<template <typename...> class MementoMap, typename... Args>
-class Memento final
+class MementoHash final
 {
     struct Entry final
     {
@@ -36,7 +36,7 @@ class Memento final
     MementoMap<uint32_t, Entry> m_table;
 
 public:
-    Memento() {}
+    MementoHash() {}
 
     /**
      * Returns the size of the replacement set.
