@@ -1,5 +1,5 @@
 /**
- * @author Roberto Vicario
+ * @authors Amos Brocco, Roberto Vicario
  */
 
 #pragma once

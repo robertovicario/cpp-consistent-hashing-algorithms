@@ -40,7 +40,7 @@ double computeResizeTime(const string& algorithm, uint32_t initNodes) {
     /*
      * Returning the results.
      */
-    auto time{static_cast<double>(end - start) / CLOCKS_PER_SEC * pow(10, 9)};
+    double time{static_cast<double>(end - start) / CLOCKS_PER_SEC * pow(10, 9)};
     cout << "# [LOG] ----- @" << algorithm << "\t>_ resize_time = " << time << " ns" << endl;
     return time;
 }
