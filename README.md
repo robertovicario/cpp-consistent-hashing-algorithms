@@ -14,8 +14,8 @@ This project collects C++ implementations of the most prominent consistent hashi
 
 You can find new implementations in related branches:
 
-- Ring [Karger et al.](https://dl.acm.org/doi/pdf/10.1145/258533.258660) (1997)
-- Maglev [Eisenbud et al.](https://www.usenix.org/sites/default/files/nsdi16-paper-eisenbud-update.pdf) (2016)
+- **Ring** by [Karger et al.](https://dl.acm.org/doi/pdf/10.1145/258533.258660) (1997)
+- **Maglev** by [Eisenbud et al.](https://www.usenix.org/sites/default/files/nsdi16-paper-eisenbud-update.pdf) (2016)
 
 ### Benchmarks
 
