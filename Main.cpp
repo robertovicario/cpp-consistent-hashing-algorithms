@@ -5,11 +5,11 @@
 #include <iostream>
 #include <yaml-cpp/yaml.h>
 
-#include "Algorithms/anchor/AnchorEngine.h"
+#include "Algorithms/anchor/AnchorEngine.hpp"
 #include "Algorithms/dx/DxEngine.hpp"
 #include "Algorithms/jump/JumpEngine.hpp"
-#include "Algorithms/memento/MementoEngine.h"
-#include "Algorithms/power/PowerEngine.h"
+#include "Algorithms/memento/MementoEngine.hpp"
+#include "Algorithms/power/PowerEngine.hpp"
 #include "Benchmarks/Routine.hpp"
 #include "Handler/HandlerImpl.hpp"
 

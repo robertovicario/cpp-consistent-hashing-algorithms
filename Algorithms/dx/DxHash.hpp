@@ -14,6 +14,7 @@ private:
     std::vector<bool> nodes;
     uint32_t num_working{};
     uint32_t size{};
+    uint32_t memory{};
 
 public:
     DxHash(uint32_t initNodes) : size(initNodes), num_working(initNodes), nodes() {
@@ -27,6 +28,12 @@ public:
         for (i = num_working; i < size; i++) {
             nodes[i] = false;
         }
+
+        memory += sizeof(nodes) + sizeof(num_working) + sizeof(size) + sizeof(memory);
+    }
+
+    uint32_t getMemoryUsage() {
+        return memory;
     }
 
     uint32_t getNodeID(uint32_t key, uint32_t *numHash) override {

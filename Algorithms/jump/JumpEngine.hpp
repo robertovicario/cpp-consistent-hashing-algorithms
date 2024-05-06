@@ -22,9 +22,16 @@
 class JumpEngine final {
 private:
     uint32_t initNodes;
+    uint32_t memory{};
 
 public:
-    explicit JumpEngine(uint32_t initNodes) : initNodes{initNodes} {}
+    explicit JumpEngine(uint32_t initNodes) : initNodes{initNodes} {
+        memory += sizeof(initNodes) + sizeof(memory);
+    }
+
+    uint32_t getMemoryUsage() {
+        return memory;
+    }
 
     /**
    * Returns the bucket where the given key should be mapped.

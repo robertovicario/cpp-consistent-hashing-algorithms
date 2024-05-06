@@ -34,16 +34,15 @@ endif()
 
 # Define sources
 set(MAIN_SOURCES
-        Algorithms/anchor/AnchorHash.cpp
         Algorithms/anchor/AnchorHash.hpp
-        Algorithms/anchor/AnchorEngine.h
+        Algorithms/anchor/AnchorEngine.hpp
         Algorithms/dx/DxEngine.hpp
         Algorithms/jump/JumpEngine.hpp
-        Algorithms/memento/MashTable.h
-        Algorithms/memento/MementoHash.h
-        Algorithms/memento/MementoEngine.h
+        Algorithms/memento/MashTable.hpp
+        Algorithms/memento/MementoHash.hpp
+        Algorithms/memento/MementoEngine.hpp
         Algorithms/misc/HashFunctions.h
-        Algorithms/power/PowerEngine.h
+        Algorithms/power/PowerEngine.hpp
         Benchmarks/Metrics.h
         Benchmarks/Routine.hpp
         Handler/HandlerImpl.hpp

@@ -11,10 +11,16 @@ using namespace std;
 template <typename Engine>
 double computeMemoryUsage(const string& algorithm, uint32_t initNodes) {
     /*
+     * Initializing the engine.
+     */
+    Engine engine(initNodes);
+
+    /*
      * Starting the measuring.
      */
-    unique_ptr<Engine> engine = make_unique<Engine>(initNodes);
-    double size = sizeof(*engine);
+    double staticMemory = sizeof(engine);
+    double dynamicMemory = sizeof(engine.getMemoryUsage());
+    double size = staticMemory + dynamicMemory;
 
     /*
      * Returning the results.

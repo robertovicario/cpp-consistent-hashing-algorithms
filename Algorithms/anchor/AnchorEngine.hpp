@@ -20,12 +20,14 @@
 
 class AnchorEngine final {
 private:
-    AnchorHash m_anchor;
+    AnchorHash anchor;
 
 public:
     AnchorEngine(uint32_t initNodes)
-        : m_anchor{initNodes, initNodes}
+        : anchor{initNodes, initNodes}
     {}
+
+    uint32_t getMemoryUsage() { return anchor.getMemoryUsage(); };
 
     /**
    * Returns the bucket where the given key should be mapped.
@@ -37,7 +39,7 @@ public:
    */
     uint32_t getBucketCRC32c(uint64_t key, uint64_t seed) noexcept
     {
-        return m_anchor.ComputeBucket(key, seed);
+        return anchor.ComputeBucket(key, seed);
     }
 
     /**
@@ -45,7 +47,7 @@ public:
    *
    * @return the added bucket
    */
-    uint32_t addBucket() noexcept { return m_anchor.UpdateNewBucket(); }
+    uint32_t addBucket() noexcept { return anchor.UpdateNewBucket(); }
 
     /**
    * Removes the given bucket from the engine.
@@ -55,7 +57,7 @@ public:
    */
     uint32_t removeBucket(uint32_t bucket) noexcept
     {
-        m_anchor.UpdateRemoval(bucket);
+        anchor.UpdateRemoval(bucket);
         return bucket;
     }
 };

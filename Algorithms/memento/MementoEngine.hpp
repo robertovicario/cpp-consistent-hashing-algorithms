@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include "MementoHash.h"
+#include "MementoHash.hpp"
 #include "../misc/HashFunctions.h"
 #include <string_view>
 #include <xxhash.h>
@@ -195,6 +195,8 @@ public:
    * @return the size of the b-array.
    */
   uint32_t bArraySize() const noexcept { return m_bArraySize; }
+
+    uint32_t getMemoryUsage() { return m_memento.getMemoryUsage(); };
 
 private:
 
