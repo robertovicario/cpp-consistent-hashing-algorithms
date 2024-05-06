@@ -12,10 +12,10 @@ This project collects C++ implementations of the most prominent consistent hashi
 - **Power** by [Leu et al.](https://arxiv.org/pdf/2307.12448.pdf) (2023)
 - **Memento** by [Coluzzi et al.](https://arxiv.org/pdf/2306.09783.pdf) (2023)
 
-Soon:
+You can find new implementations in related branches:
 
-- Ring [Karger et al.](https://example.com) (1997)
-- Maglev [Eisenbud et al.](https://example.com) (2016)
+- Ring [Karger et al.](https://dl.acm.org/doi/pdf/10.1145/258533.258660) (1997)
+- Maglev [Eisenbud et al.](https://www.usenix.org/sites/default/files/nsdi16-paper-eisenbud-update.pdf) (2016)
 
 ### Benchmarks
 

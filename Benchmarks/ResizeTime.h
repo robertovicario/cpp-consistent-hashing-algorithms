@@ -14,6 +14,8 @@ using namespace std::chrono;
 
 template <typename Engine>
 double computeResizeTime(const string& algorithm, uint32_t initNodes) {
+    auto start{clock()};
+
     /*
      * Initializing the engine.
      */
@@ -27,10 +29,8 @@ double computeResizeTime(const string& algorithm, uint32_t initNodes) {
     uint32_t index = rng() % initNodes;
 
     /*
-     * Starting the measuring.
+     * Measuring.
      */
-    auto start{clock()};
-
     vector<uint32_t> bucket_status(initNodes, 1);
     auto removed_node = engine.removeBucket(index);
     bucket_status[removed_node] = 0;

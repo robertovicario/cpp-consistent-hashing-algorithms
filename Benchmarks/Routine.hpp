@@ -101,13 +101,13 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
                          * MONOTONICITY
                          */
                         printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[k] = computeInitTime<Engine>(algorithm, initNodes);
+                        results[k] = computeMonotonicity<Engine>(algorithm, initNodes);
                     } else if (benchmark == "resize-balance") {
                         /*
                          * RESIZE_BALANCE
                          */
                         printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[k] = computeResizeBalance<Engine>(algorithm, initNodes);
+                        results[k] = computeResizeBalance<Engine>(algorithm, initNodes);
                     } else if (benchmark == "resize-time") {
                         /*
                          * RESIZE_TIME

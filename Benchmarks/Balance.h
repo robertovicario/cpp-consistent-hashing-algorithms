@@ -15,7 +15,7 @@ double computeBalance(const string& algorithm, uint32_t initNodes) {
     Engine engine(initNodes);
 
     /*
-     * Absorbing keys into the anchor set.
+     * Starting the measuring.
      */
     random_device rd;
     mt19937 rng(rd());
@@ -25,9 +25,6 @@ double computeBalance(const string& algorithm, uint32_t initNodes) {
         absorbed_keys[engine.getBucketCRC32c(rng(), rng())] += 1;
     }
 
-    /*
-     * Starting the measuring.
-     */
     double mean = static_cast<double>(initNodes) / initNodes;
     double balance = 0;
     vector<uint32_t> bucket_status(initNodes, 1);

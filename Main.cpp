@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * MEMENTO
                  */
-                execute<MementoEngine<boost::unordered_multimap>>("memento", handler, yaml);
+                execute<MementoEngine<boost::unordered_flat_map>>("memento", handler, yaml);
             } else if (algorithm == "power") {
                 /*
                  * POWER

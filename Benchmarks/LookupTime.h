@@ -15,6 +15,11 @@ using namespace std::chrono;
 template <typename Engine>
 double computeLookupTime(const string& algorithm, uint32_t initNodes) {
     /*
+     * Starting the measuring.
+     */
+    auto start{clock()};
+
+    /*
      * Initializing the engine.
      */
     Engine engine(initNodes);
@@ -28,17 +33,11 @@ double computeLookupTime(const string& algorithm, uint32_t initNodes) {
     uint32_t index = dist(rng);
 
     /*
-     * Starting the measuring.
+     * Measuring.
      */
-    auto start{clock()};
-
     volatile int64_t bucket{0};
-    for (uint32_t i = 0; i < initNodes; ++i) {
-        #ifdef USE_PCG32
-            bucket = engine.getBucketCRC32c(rng(), rng());
-        #else
-            bucket = engine.getBucketCRC32c(rand(), rand());
-        #endif
+    for (uint32_t i = 0; i < initNodes; i++) {
+         bucket = engine.getBucketCRC32c(rand(), rand());
     }
 
     auto end{clock()};

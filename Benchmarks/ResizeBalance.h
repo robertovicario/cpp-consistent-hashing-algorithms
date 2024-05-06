@@ -34,16 +34,13 @@ double computeResizeBalance(const string& algorithm, uint32_t initNodes) {
     }
 
     /*
-     * Absorbing keys into the anchor set.
+     * Starting the measuring.
      */
     vector<uint32_t> absorbed_keys(initNodes, 0);
     for (i = 0; i < initNodes; i++) {
         absorbed_keys[engine.getBucketCRC32c(rng(), rng())] += 1;
     }
 
-    /*
-     * Starting the measuring.
-     */
     double mean = static_cast<double>(initNodes) / (initNodes - numRemovals);
     double balance = 0;
 

@@ -17,12 +17,7 @@ double computeInitTime(const string& algorithm, uint32_t initNodes) {
      * Starting the measuring.
      */
     auto start{clock()};
-
-    /*
-     * Initializing the engine.
-     */
     Engine engine(initNodes);
-
     auto end{clock()};
 
     /*
