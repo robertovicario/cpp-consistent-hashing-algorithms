@@ -90,8 +90,8 @@ Start the framework:
 2. Implement the benchmark in `Benchmarks/`. Create a function named `computeYourBenchmark` within it, accepting parameters `string algorithm` and `uint32_t initNodes`. Note that the system utilizes C++ templates for benchmark integration into the loop.
 3. Integrate a new benchmark routine into `Benchmarks/Routine.hpp`. Append a new `else if` branch and incorporate your engine using:
     ```cpp
-    printInfo(k, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-    results[k] = computeYourBenchmark<Engine>(algorithm, initNodes);
+    printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+    results[l] = computeYourBenchmark<Engine>(algorithm, initNodes);
     ```
 
 ## Licence
