@@ -33,7 +33,7 @@ The format of the configuration file is described in detail in the [`configs/tem
 
 ### Flow Control
 
-| <img src="" alt="FlowControl.png" width="512"/> |
+| <img src="https://github.com/robertovicario/cpp-consistent-hashing-algorithms/assets/119845903/5bf1164f-5b1f-421d-9b31-ef1fd91bc4f5" alt="FlowControl" width="512"/> |
 | :--: |
 | Figure 1: Exploring the flow control of the benchmark routine. |
 
