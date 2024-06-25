@@ -19,13 +19,13 @@ You can find new implementations in related branches:
 
 ### Benchmarks
 
-- **Balance**: The ability of the algorithm to spread the keys evenly across the cluster nodes.
-- **Initialization Time**: The time the algorithm requires to initialize its internal structure.
-- **Lookup Time**: The time the algorithm needs to find the node a given key belongs to.
-- **Memory Usage**: The amount of memory the algorithm uses to store its internal structure.
-- **Monotonicity**: The ability of the algorithm to move the minimum amount of resources when the cluster scales.
-- **Resize Balance**: The ability of the algorithm to keep its balance after adding or removing nodes.
-- **Resize Time**: The time the algorithm requires to reorganize its internal structure after adding or removing nodes.
+- **Balance:** The ability of the algorithm to spread the keys evenly across the cluster nodes.
+- **Initialization Time:** The time the algorithm requires to initialize its internal structure.
+- **Lookup Time:** The time the algorithm needs to find the node a given key belongs to.
+- **Memory Usage:** The amount of memory the algorithm uses to store its internal structure.
+- **Monotonicity:** The ability of the algorithm to move the minimum amount of resources when the cluster scales.
+- **Resize Balance:** The ability of the algorithm to keep its balance after adding or removing nodes.
+- **Resize Time:** The time the algorithm requires to reorganize its internal structure after adding or removing nodes.
 
 ### Configuration
 
@@ -33,9 +33,14 @@ The format of the configuration file is described in detail in the [`configs/tem
 
 ### Flow Control
 
-| <img src="https://github.com/robertovicario/cpp-consistent-hashing-algorithms/assets/119845903/5bf1164f-5b1f-421d-9b31-ef1fd91bc4f5" alt="FlowControl" width="512"/> |
-| :--: |
-| **Figure 1:** Exploring the flow control of the benchmark routine. |
+<table>
+    <tr>
+        <td><img src="https://github.com/robertovicario/cpp-consistent-hashing-algorithms/assets/119845903/5bf1164f-5b1f-421d-9b31-ef1fd91bc4f5" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Exploring the flow control of the benchmark routine.</td>
+    </tr>
+</table>
 
 ## Instructions
 
@@ -108,18 +113,18 @@ This project is distributed under [GNU General Public License version 3](https:/
 > 
 > ### Credits
 >
-> - **java-consistent-hashing-algorithms**:
->   - **Author**: [SUPSI-DTI-ISIN](https://github.com/SUPSI-DTI-ISIN)
->   - **License**: [GNU General Public License version 3](https://opensource.org/license/gpl-3-0)
->   - **Source**: [GitHub Repository](https://github.com/SUPSI-DTI-ISIN/java-consistent-hashing-algorithms.git)
-> - **cpp-anchorhash**:
->   - **Author**: [anchorhash](https://github.com/anchorhash)
->   - **License**: [The MIT License](https://opensource.org/license/mit)
->   - **Source**: [GitHub Repository](https://github.com/anchorhash/cpp-anchorhash.git)
-> - **DxHash**:
->   - **Author**: [ChaosD](https://github.com/ChaosD)
->   - **License**: none
->   - **Source**: [GitHub Repository](https://github.com/ChaosD/DxHash.git)
+> - **java-consistent-hashing-algorithms:**
+>   - **Author:** [SUPSI-DTI-ISIN](https://github.com/SUPSI-DTI-ISIN)
+>   - **License:** [GNU General Public License version 3](https://opensource.org/license/gpl-3-0)
+>   - **Source:** [GitHub Repository](https://github.com/SUPSI-DTI-ISIN/java-consistent-hashing-algorithms.git)
+> - **cpp-anchorhash:**
+>   - **Author:** [anchorhash](https://github.com/anchorhash)
+>   - **License:** [The MIT License](https://opensource.org/license/mit)
+>   - **Source:** [GitHub Repository](https://github.com/anchorhash/cpp-anchorhash.git)
+> - **DxHash:**
+>   - **Author:** [ChaosD](https://github.com/ChaosD)
+>   - **License:** none
+>   - **Source:** [GitHub Repository](https://github.com/ChaosD/DxHash.git)
 
 ## Contacts
 

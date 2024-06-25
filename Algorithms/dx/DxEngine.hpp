@@ -18,5 +18,4 @@ public:
         dx.updateRemoval(bucket);
         return bucket;
     }
-    uint32_t getMemoryUsage() { return dx.getMemoryUsage(); };
 };

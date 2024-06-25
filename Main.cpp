@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * ANCHOR
                  */
-                execute<AnchorEngine>("anchor", handler, yaml);
+                // execute<AnchorEngine>("anchor", handler, yaml);
             } else if (algorithm == "dx") {
                 /*
                  * DX
@@ -59,17 +59,17 @@ int main(int argc, char* argv[]) {
                 /*
                  * JUMP
                  */
-                execute<JumpEngine>("jump", handler, yaml);
+                // execute<JumpEngine>("jump", handler, yaml);
             } else if (algorithm == "memento") {
                 /*
                  * MEMENTO
                  */
-                execute<MementoEngine<boost::unordered_flat_map>>("memento", handler, yaml);
+                // execute<MementoEngine<boost::unordered_flat_map>>("memento", handler, yaml);
             } else if (algorithm == "power") {
                 /*
                  * POWER
                  */
-                execute<PowerEngine>("power", handler, yaml);
+                // execute<PowerEngine>("power", handler, yaml);
             }
         }
     } catch (const YAML::Exception& e) {
