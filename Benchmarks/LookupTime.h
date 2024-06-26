@@ -15,22 +15,14 @@ using namespace std::chrono;
 template <typename Engine>
 double computeLookupTime(const string& algorithm, uint32_t initNodes) {
     /*
-     * Starting the measuring.
-     */
-    auto start{clock()};
-
-    /*
      * Initializing the engine.
      */
     Engine engine(initNodes);
 
     /*
-     * Selecting a random bucket index.
+     * Starting the measuring.
      */
-    random_device rd;
-    mt19937 rng(rd());
-    uniform_int_distribution<uint32_t> dist(0, initNodes - 1);
-    uint32_t index = dist(rng);
+    auto start{clock()};
 
     /*
      * Measuring.
