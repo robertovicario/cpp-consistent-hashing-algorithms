@@ -14,11 +14,11 @@ using namespace std;
 using namespace std::chrono;
 
 template <typename Engine>
-double computeLookupTime(const string& algorithm, uint32_t initNodes, uint32_t initNodes2) {
+double computeLookupTime(const string& algorithm, uint32_t param1, uint32_t param2) {
     /*
      * Initializing the engine.
      */
-    Engine engine(initNodes, initNodes2);
+    Engine engine(param1, param2);
 
     /*
      * Starting the measuring.
@@ -26,7 +26,7 @@ double computeLookupTime(const string& algorithm, uint32_t initNodes, uint32_t i
     vector<double> results;
     volatile int64_t bucket{0};
 
-    for (uint32_t i = 0; i < initNodes; i++) {
+    for (uint32_t i = 0; i < param1; i++) {
         auto start{clock()};
         bucket = engine.getBucketCRC32c(rand(), rand());
         auto end{clock()};
