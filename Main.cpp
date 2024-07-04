@@ -33,6 +33,10 @@ int main(int argc, char* argv[]) {
          */
         auto pathCsv = yaml["common"]["output-folder"].as<string>();
         pathCsv += "/results.csv";
+
+        /*
+         * Remove only if change the standard for 'output-folder' from /'tmp' to 'tmp/'
+         */
         pathCsv = pathCsv.substr(1);
 
         HandlerImpl handler = HandlerImpl(pathCsv);
