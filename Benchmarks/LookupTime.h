@@ -21,7 +21,7 @@ double computeLookupTime(const string& algorithm, uint32_t initNodes, uint32_t i
     Engine engine(initNodes, initNodes2);
 
     /*
-     * Measuring.
+     * Starting the measuring.
      */
     vector<double> results;
     volatile int64_t bucket{0};
