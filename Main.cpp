@@ -33,6 +33,8 @@ int main(int argc, char* argv[]) {
          */
         auto pathCsv = yaml["common"]["output-folder"].as<string>();
         pathCsv += "/results.csv";
+        pathCsv = pathCsv.substr(1);
+
         HandlerImpl handler = HandlerImpl(pathCsv);
 
         cout << "# [SYS] ----- ****************************" << endl;
