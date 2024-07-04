@@ -35,7 +35,8 @@ int main(int argc, char* argv[]) {
         pathCsv += "/results.csv";
 
         /*
-         * Remove only if change the standard for 'output-folder' from /'tmp' to 'tmp/'
+         * ![WARNING]
+         * This line could be removed only if change the standard of the 'output-folder' from '/dir' to 'dir/'.
          */
         pathCsv = pathCsv.substr(1);
 
