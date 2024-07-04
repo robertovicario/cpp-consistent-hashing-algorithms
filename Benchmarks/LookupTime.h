@@ -8,36 +8,42 @@
 #include <cmath>
 #include <iostream>
 #include <random>
+#include <vector>
 
 using namespace std;
 using namespace std::chrono;
 
 template <typename Engine>
-double computeLookupTime(const string& algorithm, uint32_t initNodes) {
+double computeLookupTime(const string& algorithm, uint32_t initNodes, uint32_t initNodes2) {
     /*
      * Initializing the engine.
      */
-    Engine engine(initNodes);
-
-    /*
-     * Starting the measuring.
-     */
-    auto start{clock()};
+    Engine engine(initNodes, initNodes2);
 
     /*
      * Measuring.
      */
+    vector<double> results;
     volatile int64_t bucket{0};
+
     for (uint32_t i = 0; i < initNodes; i++) {
-         bucket = engine.getBucketCRC32c(rand(), rand());
+        auto start{clock()};
+        bucket = engine.getBucketCRC32c(rand(), rand());
+        auto end{clock()};
+
+        auto time{static_cast<double>(end - start) / CLOCKS_PER_SEC * pow(10, 9)};
+        results.push_back(time);
     }
 
-    auto end{clock()};
+    double sum_time = 0;
+    for (const auto& time : results) {
+        sum_time += time;
+    }
 
     /*
      * Returning the results.
      */
-    auto time{static_cast<double>(end - start) / CLOCKS_PER_SEC * pow(10, 9)};
-    cout << "# [LOG] ----- @" << algorithm << "\t>_ lookup_time = " << time << " ns" << endl;
-    return time;
+    double mean_time = sum_time / results.size();
+    cout << "# [LOG] ----- @" << algorithm << "\t>_ lookup_time = " << mean_time << " ns" << endl;
+    return mean_time;
 }
