@@ -20,7 +20,7 @@
 
 using namespace std;
 
-void printInfo(int k, const string& algorithm, const string& benchmark, const string& hashFunction, int initNodes, int iterationsRun) {
+void printInfo(int k, const string& algorithm, const string& benchmark, const string& hashFunction, u_int32_t initNodes, u_int32_t iterationsRun) {
     /*
      * Printing the information.
      */
@@ -34,12 +34,13 @@ void printInfo(int k, const string& algorithm, const string& benchmark, const st
     }
 }
 
-template <typename Engine>
-static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node yaml) {
+template <typename Engine, typename... Args>
+static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node yaml, Args... args) {
+    auto iterationsRun = yaml["common"]["iterations"]["run"].as<int>();
+
     /*
      * Initializing the metrics.
      */
-    auto iterationsRun = yaml["common"]["iterations"]["run"].as<int>();
     double results[iterationsRun];
     double mean;
     double var;
@@ -76,44 +77,44 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
                         /*
                          * BALANCE
                          */
-                        // printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[l] = computeBalance<Engine>(algorithm, initNodes, initNodes);
+                        printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[l] = computeBalance<Engine>(algorithm, initNodes, initNodes);
                     } else if (benchmark == "init-time") {
                         /*
                          * INIT_TIME
                          */
-                        // printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[l] = computeInitTime<Engine>(algorithm, initNodes, initNodes);
+                        printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[l] = computeInitTime<Engine>(algorithm, initNodes, initNodes);
                     } else if (benchmark == "lookup-time") {
                         /*
                          * LOOKUP_TIME
                          */
                         printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        results[l] = computeLookupTime<Engine>(algorithm, initNodes, initNodes);
+                        results[l] = computeLookupTime<Engine>(yaml, algorithm, initNodes, args...);
                     } else if (benchmark == "memory-usage") {
                         /*
                          * MEMORY_USAGE
                          */
-                        // printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[l] = computeMemoryUsage<Engine>(algorithm, initNodes, initNodes);
+                        printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[l] = computeMemoryUsage<Engine>(algorithm, initNodes, initNodes);
                     } else if (benchmark == "monotonicity") {
                         /*
                          * MONOTONICITY
                          */
-                        // printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[l] = computeMonotonicity<Engine>(algorithm, initNodes, initNodes);
+                        printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[l] = computeMonotonicity<Engine>(algorithm, initNodes, initNodes);
                     } else if (benchmark == "resize-balance") {
                         /*
                          * RESIZE_BALANCE
                          */
-                        // printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[l] = computeResizeBalance<Engine>(algorithm, initNodes, initNodes);
+                        printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[l] = computeResizeBalance<Engine>(algorithm, initNodes, initNodes);
                     } else if (benchmark == "resize-time") {
                         /*
                          * RESIZE_TIME
                          */
-                        // printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[l] = computeResizeTime<Engine>(algorithm, initNodes, initNodes);
+                        printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[l] = computeResizeTime<Engine>(algorithm, initNodes, initNodes);
                     } else {
                         flag = true;
                         break;

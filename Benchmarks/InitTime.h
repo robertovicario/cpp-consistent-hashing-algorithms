@@ -11,13 +11,13 @@
 using namespace std;
 using namespace std::chrono;
 
-template <typename Engine>
-double computeInitTime(const string& algorithm, uint32_t initNodes) {
+template <typename Engine, typename... Args>
+double computeInitTime(const YAML::Node& yaml, const string& algorithm, u_int32_t initNodes, Args... args) {
     /*
      * Starting the measuring.
      */
     auto start{clock()};
-    Engine engine(initNodes);
+    Engine engine(initNodes, args...);
     auto end{clock()};
 
     /*

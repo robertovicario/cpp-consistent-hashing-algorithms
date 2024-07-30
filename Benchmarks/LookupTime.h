@@ -9,26 +9,31 @@
 #include <iostream>
 #include <random>
 #include <vector>
+#include <yaml-cpp/yaml.h>
+
+#include "../Handler/HandlerImpl.hpp"
 
 using namespace std;
 using namespace std::chrono;
 
-template <typename Engine>
-double computeLookupTime(const string& algorithm, uint32_t param1, uint32_t param2) {
+template <typename Engine, typename... Args>
+double computeLookupTime(const YAML::Node& yaml, const string& algorithm, u_int32_t initNodes, Args... args) {
     /*
-     * Initializing the engine.
+     * Initializing the engine with the provided arguments.
      */
-    Engine engine(param1, param2);
+    Engine engine(initNodes, args...);
 
     /*
      * Starting the measuring.
      */
     vector<double> results;
-    volatile int64_t bucket{0};
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(0, INT32_MAX);
 
-    for (uint32_t i = 0; i < param1; i++) {
+    for (uint32_t i = 0; i < initNodes; i++) {
         auto start{clock()};
-        bucket = engine.getBucketCRC32c(rand(), rand());
+        engine.getBucketCRC32c(dist(gen), dist(gen));
         auto end{clock()};
 
         auto time{static_cast<double>(end - start) / CLOCKS_PER_SEC * pow(10, 9)};

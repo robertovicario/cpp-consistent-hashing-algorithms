@@ -33,13 +33,13 @@ double getAllocatedMemory() {
     return totalAllocated - totalFreed;
 }
 
-template <typename Engine>
-double computeMemoryUsage(const string& algorithm, uint32_t initNodes) {
+template <typename Engine, typename... Args>
+double computeMemoryUsage(const YAML::Node& yaml, const string& algorithm, u_int32_t initNodes, Args... args) {
     /*
      * Initializing the engine.
      */
     double initalMemory = getAllocatedMemory();
-    Engine engine(initNodes);
+    Engine engine(initNodes, args...);
 
     /*
      * Starting the measuring.

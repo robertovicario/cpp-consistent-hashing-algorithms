@@ -12,14 +12,14 @@
 using namespace std;
 using namespace std::chrono;
 
-template <typename Engine>
-double computeResizeTime(const string& algorithm, uint32_t initNodes) {
+template <typename Engine, typename... Args>
+double computeResizeTime(const YAML::Node& yaml, const string& algorithm, u_int32_t initNodes, Args... args) {
     auto start{clock()};
 
     /*
      * Initializing the engine.
      */
-    Engine engine(initNodes);
+    Engine engine(initNodes, args...);
 
     /*
      * Selecting a random bucket index.

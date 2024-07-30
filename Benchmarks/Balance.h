@@ -7,12 +7,12 @@
 
 using namespace std;
 
-template <typename Engine>
-double computeBalance(const string& algorithm, uint32_t initNodes) {
+template <typename Engine, typename... Args>
+double computeBalance(const YAML::Node& yaml, const string& algorithm, u_int32_t initNodes, Args... args) {
     /*
      * Initializing the engine.
      */
-    Engine engine(initNodes);
+    Engine engine(initNodes, args...);
 
     /*
      * Starting the measuring.

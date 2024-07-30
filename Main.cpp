@@ -50,39 +50,61 @@ int main(int argc, char* argv[]) {
         /*
          * Starting the benchmark routine.
          */
-        for (auto i : yaml["algorithms"]) {
+        for (auto i: yaml["algorithms"]) {
             auto algorithm = i["name"].as<string>();
             if (algorithm == "anchor") {
                 /*
                  * ANCHOR
                  */
-                // execute<AnchorEngine>("anchor", handler, yaml);
+                auto capacity = i["args"]["capacity"].as<int>(10);
+                execute<AnchorEngine>("anchor", handler, yaml, capacity);
             } else if (algorithm == "dx") {
                 /*
                  * DX
                  */
-                execute<DxEngine>("dx", handler, yaml);
+                auto capacity = i["args"]["capacity"].as<int>(10);
+                execute<DxEngine>("dx", handler, yaml, capacity);
             } else if (algorithm == "jump") {
                 /*
                  * JUMP
                  */
-                // execute<JumpEngine>("jump", handler, yaml);
-            } else if (algorithm == "memento") {
+                execute<JumpEngine>("jump", handler, yaml);
+            } else if (algorithm == "maglev") {
                 /*
-                 * MEMENTO
+                 * MAGLEV
                  */
-                // execute<MementoEngine<boost::unordered_flat_map>>("memento", handler, yaml);
+                 // auto permutations = i["args"]["permutations"].as<int>(128);
+                 // execute<MaglevEngine>("maglev", handler, yaml, permutations);
+            } else if (algorithm == "memento") {
+                execute<MementoEngine<boost::unordered_flat_map>>("memento", handler, yaml);
+            } else if (algorithm == "multi-probe") {
+                /*
+                 * MULTIPROBE
+                 */
+                // auto probes = i["args"]["probes"].as<int>(21);
+                // execute<MultiProbeEngine>("multi-probe", handler, yaml, probes);
             } else if (algorithm == "power") {
                 /*
                  * POWER
                  */
-                // execute<PowerEngine>("power", handler, yaml);
+                execute<PowerEngine>("power", handler, yaml);
+            } else if (algorithm == "rendezvous") {
+                /*
+                 * RENDEZVOUS
+                 */
+                // execute<RendezvousEngine>("rendezvous", handler, yaml);
+            } else if (algorithm == "ring") {
+                /*
+                 * RING
+                 */
+                // auto virtualNodes = i["args"]["virtualNodes"].as<int>(1000);
+                // execute<RingEngine>("ring", handler, yaml, virtualNodes);
             }
         }
-    } catch (const YAML::Exception& e) {
+    } catch (const YAML::Exception &e) {
         cout << "# [ERR] ----- Exception: " << e.what() << endl;
         return 1;
-    } catch (const exception& e) {
+    } catch (const exception &e) {
         cout << "# [ERR] ----- Exception: " << e.what() << endl;
         return 1;
     }
