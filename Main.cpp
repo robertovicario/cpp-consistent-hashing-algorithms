@@ -58,9 +58,11 @@ int main(int argc, char* argv[]) {
         /*
          * Starting the benchmark routine.
          */
+        bool flag = false;
         for (auto i : yaml["algorithms"]) {
             auto algorithm = i["name"].as<string>();
             if (!arg2.empty() && algorithm != arg2) {
+                flag = true;
                 continue;
             }
 
@@ -112,6 +114,10 @@ int main(int argc, char* argv[]) {
                 auto virtualNodes = i["args"]["virtualNodes"].as<int>(1000);
                 // execute<RingEngine>(handler, yaml, "ring", virtualNodes);
             }
+        }
+
+        if (flag) {
+            cout << "#" << endl;
         }
     } catch (const YAML::Exception &e) {
         cout << "# [ERR] ----- Exception: " << e.what() << endl;

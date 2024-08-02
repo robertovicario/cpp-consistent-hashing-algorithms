@@ -17,7 +17,7 @@
 #pragma once
 
 #include <cstdint>
-#include "../misc/HashFunctions.h"
+#include "../misc/HashFunctions.hpp"
 
 class JumpEngine final {
 private:

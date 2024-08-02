@@ -7,7 +7,7 @@
 #include <cstdio>
 
 #include "../misc/ConsistentHash.hpp"
-#include "../misc/HashFunctions.h"
+#include "../misc/HashFunctions.hpp"
 
 class DxHash : public ConsistentHash {
 private:

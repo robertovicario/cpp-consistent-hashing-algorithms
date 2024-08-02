@@ -22,7 +22,7 @@
 #include <iostream>
 #include <stack>
 #include <stdint.h>
-#include "../misc/HashFunctions.h"
+#include "../misc/HashFunctions.hpp"
 
 /** Class declaration */
 class AnchorHash {

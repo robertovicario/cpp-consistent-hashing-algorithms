@@ -17,7 +17,7 @@
 #pragma once
 
 #include "MementoHash.hpp"
-#include "../misc/HashFunctions.h"
+#include "../misc/HashFunctions.hpp"
 #include <string_view>
 #include <xxhash.h>
 
