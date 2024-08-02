@@ -35,12 +35,11 @@ void printInfo(int k, const string& algorithm, const string& benchmark, const st
 }
 
 template <typename Engine, typename... Args>
-static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node yaml, Args... args) {
-    auto iterationsRun = yaml["common"]["iterations"]["run"].as<int>();
-
+static void execute(HandlerImpl& handler, YAML::Node yaml, const string& algorithm, Args... args) {
     /*
      * Initializing the metrics.
      */
+    auto iterationsRun = yaml["common"]["iterations"]["run"].as<int>();
     double results[iterationsRun];
     double mean;
     double var;
@@ -49,7 +48,6 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
     /*
      * Executing the benchmark routine.
      */
-    bool flag = false; // used to ignore benchmarks not implemented yet
     for (auto i : yaml["benchmarks"]) {
         auto benchmark = i["name"].as<string>();
         /*
@@ -78,13 +76,13 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
                          * BALANCE
                          */
                         printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        results[l] = computeBalance<Engine>(algorithm, initNodes, initNodes);
+                        results[l] = computeBalance<Engine>(yaml, algorithm, initNodes, args...);
                     } else if (benchmark == "init-time") {
                         /*
                          * INIT_TIME
                          */
                         printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        results[l] = computeInitTime<Engine>(algorithm, initNodes, initNodes);
+                        results[l] = computeInitTime<Engine>(yaml, algorithm, initNodes, args...);
                     } else if (benchmark == "lookup-time") {
                         /*
                          * LOOKUP_TIME
@@ -96,55 +94,46 @@ static void execute(const string& algorithm, HandlerImpl& handler, YAML::Node ya
                          * MEMORY_USAGE
                          */
                         printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        results[l] = computeMemoryUsage<Engine>(algorithm, initNodes, initNodes);
+                        results[l] = computeMemoryUsage<Engine>(yaml, algorithm, initNodes, args...);
                     } else if (benchmark == "monotonicity") {
                         /*
                          * MONOTONICITY
                          */
                         printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        results[l] = computeMonotonicity<Engine>(algorithm, initNodes, initNodes);
+                        results[l] = computeMonotonicity<Engine>(yaml, algorithm, initNodes, args...);
                     } else if (benchmark == "resize-balance") {
                         /*
                          * RESIZE_BALANCE
                          */
                         printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        results[l] = computeResizeBalance<Engine>(algorithm, initNodes, initNodes);
+                        results[l] = computeResizeBalance<Engine>(yaml, algorithm, initNodes, args...);
                     } else if (benchmark == "resize-time") {
                         /*
                          * RESIZE_TIME
                          */
                         printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        results[l] = computeResizeTime<Engine>(algorithm, initNodes, initNodes);
-                    } else {
-                        flag = true;
-                        break;
+                        results[l] = computeResizeTime<Engine>(yaml, algorithm, initNodes, args...);
                     }
                 }
 
-                if (!flag) {
-                    /*
-                     * Returning the results.
-                     */
-                    cout << "#" << endl;
-                    cout << "# [SYS] ----- Computing ... " << endl;
+                /*
+                 * Returning the results.
+                 */
+                cout << "#" << endl;
+                cout << "# [SYS] ----- Computing ... " << endl;
 
-                    mean = computeMean(results, iterationsRun);
-                    var = computeVar(results, iterationsRun);
-                    stddev = computeStdDev(results, iterationsRun);
+                mean = computeMean(results, iterationsRun);
+                var = computeVar(results, iterationsRun);
+                stddev = computeStdDev(results, iterationsRun);
 
-                    cout << "#" << endl;
-                    cout << "# [LOG] ----- Results : (mean = " << mean << ", var = " << var << ", stddev = " << stddev << ")" << endl;
-                    cout << "#" << endl;
+                cout << "#" << endl;
+                cout << "# [LOG] ----- Results : (mean = " << mean << ", var = " << var << ", stddev = " << stddev << ")" << endl;
+                cout << "#" << endl;
 
-                    /*
-                     * Updating the new data to the CSV file.
-                     */
-                    handler.updateData(algorithm, benchmark, hashFunction, initNodes, iterationsRun, mean, var, stddev);
-                } else {
-                    cout << "# [ERR] ----- Benchmark not implemented yet." << endl;
-                    cout << "#" << endl;
-                    break;
-                }
+                /*
+                 * Updating the new data to the CSV file.
+                 */
+                handler.updateData(algorithm, benchmark, hashFunction, initNodes, iterationsRun, mean, var, stddev);
             }
         // }
     }

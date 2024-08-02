@@ -23,11 +23,9 @@ private:
     AnchorHash anchor;
 
 public:
-    AnchorEngine(uint32_t initNodes)
-        : anchor{initNodes, initNodes}
+    AnchorEngine(uint32_t anchor_set, uint32_t working_set)
+        : anchor{anchor_set, working_set}
     {}
-
-    uint32_t getMemoryUsage() { return anchor.getMemoryUsage(); };
 
     /**
    * Returns the bucket where the given key should be mapped.

@@ -21,8 +21,6 @@ template<template <typename...> class MementoMap, typename... Args>
 class MementoHash final
 {
 private:
-    uint32_t memory{};
-
     struct Entry final
     {
         /**
@@ -39,11 +37,6 @@ private:
     MementoMap<uint32_t, Entry> m_table;
 
 public:
-    MementoHash() {
-        // Calculate memory usage of the class and add it to private memory
-        memory += sizeof(m_table) + sizeof(memory);
-    }
-
     /**
      * Returns the size of the replacement set.
      *

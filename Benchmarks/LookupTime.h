@@ -1,5 +1,6 @@
 /**
- * @authors Amos Brocco, Roberto Vicario
+ * @authors
+ * Amos Brocco, Roberto Vicario
  */
 
 #pragma once
@@ -17,38 +18,57 @@ using namespace std;
 using namespace std::chrono;
 
 template <typename Engine, typename... Args>
-double computeLookupTime(const YAML::Node& yaml, const string& algorithm, u_int32_t initNodes, Args... args) {
+double computeLookupTime(const YAML::Node& yaml, const string& algorithm, uint32_t initNodes, Args... args) {
     /*
-     * Initializing the engine with the provided arguments.
+     * Initializing the engine.
      */
     Engine engine(initNodes, args...);
+
+    /*
+     * Checking the configuration.
+     */
+    string unit = "NANOSECONDS";
+    if (yaml["common"] && yaml["common"]["time"] && yaml["common"]["time"]["unit"]) {
+        unit = yaml["common"]["time"]["unit"].as<string>("NANOSECONDS");
+    }
 
     /*
      * Starting the measuring.
      */
     vector<double> results;
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<> dist(0, INT32_MAX);
-
     for (uint32_t i = 0; i < initNodes; i++) {
-        auto start{clock()};
-        engine.getBucketCRC32c(dist(gen), dist(gen));
-        auto end{clock()};
+        auto start{high_resolution_clock::now()};
+        engine.getBucketCRC32c(rand(), rand());
+        auto end{high_resolution_clock::now()};
+        auto duration = duration_cast<nanoseconds>(end - start).count();
 
-        auto time{static_cast<double>(end - start) / CLOCKS_PER_SEC * pow(10, 9)};
-        results.push_back(time);
+        results.push_back(static_cast<double>(duration));
     }
 
-    double sum_time = 0;
-    for (const auto& time : results) {
-        sum_time += time;
+    /*
+     * Normalizing the taken measures.
+     */
+    double sumTime = 0;
+    for (auto i : results) {
+        sumTime += i;
+    }
+
+    double meanTime = sumTime / results.size();
+
+    /*
+     * Handling the time unit.
+     */
+    if (unit == "SECONDS") {
+        meanTime /= 1e9;
+    } else if (unit == "MILLISECONDS") {
+        meanTime /= 1e6;
+    } else if (unit == "MICROSECONDS") {
+        meanTime /= 1e3;
     }
 
     /*
      * Returning the results.
      */
-    double mean_time = sum_time / results.size();
-    cout << "# [LOG] ----- @" << algorithm << "\t>_ lookup_time = " << mean_time << " ns" << endl;
-    return mean_time;
+    cout << "# [LOG] ----- @" << algorithm << "\t>_ lookup_time = " << meanTime << " " << unit << endl;
+    return meanTime;
 }

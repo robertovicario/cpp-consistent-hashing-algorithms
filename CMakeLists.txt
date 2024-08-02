@@ -41,7 +41,7 @@ set(MAIN_SOURCES
         Algorithms/memento/MashTable.hpp
         Algorithms/memento/MementoHash.hpp
         Algorithms/memento/MementoEngine.hpp
-        Algorithms/misc/HashFunctions.h
+        Algorithms/misc/HashFunctions.hpp
         Algorithms/power/PowerEngine.hpp
         Benchmarks/Metrics.h
         Benchmarks/Routine.hpp

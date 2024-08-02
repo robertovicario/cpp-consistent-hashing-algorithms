@@ -14,33 +14,52 @@ using namespace std::chrono;
 
 template <typename Engine, typename... Args>
 double computeResizeTime(const YAML::Node& yaml, const string& algorithm, u_int32_t initNodes, Args... args) {
-    auto start{clock()};
-
     /*
      * Initializing the engine.
      */
     Engine engine(initNodes, args...);
 
     /*
-     * Selecting a random bucket index.
+     * Starting the measuring.
+     */
+    auto start{high_resolution_clock::now()};
+
+    /*
+     * Selecting a random bucket.
      */
     random_device rd;
     mt19937 rng(rd());
     uint32_t index = rng() % initNodes;
 
     /*
-     * Measuring.
+     * Applying the resizing.
      */
     vector<uint32_t> bucket_status(initNodes, 1);
     auto removed_node = engine.removeBucket(index);
     bucket_status[removed_node] = 0;
 
-    auto end{clock()};
+    auto end{high_resolution_clock::now()};
+    auto duration = duration_cast<nanoseconds>(end - start).count();
+
+    /*
+     * Handling the time unit.
+     */
+    string unit = "NANOSECONDS";
+    if (yaml["common"] && yaml["common"]["time"] && yaml["common"]["time"]["unit"]) {
+        unit = yaml["common"]["time"]["unit"].as<string>("NANOSECONDS");
+    }
+
+    if (unit == "SECONDS") {
+        duration /= 1e9;
+    } else if (unit == "MILLISECONDS") {
+        duration /= 1e6;
+    } else if (unit == "MICROSECONDS") {
+        duration /= 1e3;
+    }
 
     /*
      * Returning the results.
      */
-    double time{static_cast<double>(end - start) / CLOCKS_PER_SEC * pow(10, 9)};
-    cout << "# [LOG] ----- @" << algorithm << "\t>_ resize_time = " << time << " ns" << endl;
-    return time;
+    cout << "# [LOG] ----- @" << algorithm << "\t>_ resize_time = " << duration << " " << unit << endl;
+    return duration;
 }

@@ -16,7 +16,7 @@ common:
 
         # How many times a single benchmark will be executed.
         # Default value is 5.
-        execution: 5
+        run: 5
 
     # Configurations that apply only to time based benchmarks.
     time:

@@ -22,13 +22,8 @@
 
 class PowerEngine final {
 public:
-    PowerEngine(uint32_t initNodes) : m_n{initNodes}, m_m{smallestPow2(m_n)}, m_mH{m_m >> 1}, m_mHm1{m_mH - 1}, m_mm1{m_m - 1} {
-        memory += sizeof(m_n) + sizeof(m_m) + sizeof(m_mH) + sizeof(m_mHm1) + sizeof(m_mm1) + sizeof(memory);
-    }
-
-    uint32_t getMemoryUsage() {
-        return memory;
-    }
+    PowerEngine(uint32_t initNodes) : m_n{initNodes}, m_m{smallestPow2(m_n)},m_mH{m_m >> 1}, m_mHm1{m_mH - 1}, m_mm1{m_m - 1}
+    {}
 
     /**
    * Returns the bucket where the given key should be mapped.
@@ -86,8 +81,6 @@ public:
     }
 
 private:
-    uint32_t memory{};
-
     static uint32_t smallestPow2(uint32_t x) {
         --x;
         x |= x >> 1;

@@ -20,18 +20,26 @@ int main(int argc, char* argv[]) {
         /*
          * Handling the terminal usage.
          */
-        string configName = (argc == 2) ? argv[1] : "default.yaml";
+        string arg1 = "default.yaml";
+        string arg2;
+
+        if (argc == 2) {
+            arg1 = argv[1];
+        } else if (argc == 3) {
+            arg1 = argv[1];
+            arg2 = argv[2];
+        }
 
         /*
          * Loading the YAML file.
          */
-        string pathYaml = "../configs/" + configName;
+        string pathYaml = "../configs/" + arg1;
         YAML::Node yaml = YAML::LoadFile(pathYaml);
 
         /*
          * Creating the CSV file.
          */
-        auto pathCsv = yaml["common"]["output-folder"].as<string>();
+        auto pathCsv = yaml["common"]["output-folder"].as<string>("/tmp");
         pathCsv += "/results.csv";
 
         /*
@@ -50,55 +58,59 @@ int main(int argc, char* argv[]) {
         /*
          * Starting the benchmark routine.
          */
-        for (auto i: yaml["algorithms"]) {
+        for (auto i : yaml["algorithms"]) {
             auto algorithm = i["name"].as<string>();
+            if (!arg2.empty() && algorithm != arg2) {
+                continue;
+            }
+
             if (algorithm == "anchor") {
                 /*
-                 * ANCHOR
+                 * ANCHOR_HASH
                  */
                 auto capacity = i["args"]["capacity"].as<int>(10);
-                execute<AnchorEngine>("anchor", handler, yaml, capacity);
+                execute<AnchorEngine>(handler, yaml, "anchor", capacity);
             } else if (algorithm == "dx") {
                 /*
-                 * DX
+                 * DX_HASH
                  */
                 auto capacity = i["args"]["capacity"].as<int>(10);
-                execute<DxEngine>("dx", handler, yaml, capacity);
+                execute<DxEngine>(handler, yaml, "dx", capacity);
             } else if (algorithm == "jump") {
                 /*
-                 * JUMP
+                 * JUMP_HASH
                  */
-                execute<JumpEngine>("jump", handler, yaml);
+                execute<JumpEngine>(handler, yaml, "jump");
             } else if (algorithm == "maglev") {
                 /*
-                 * MAGLEV
+                 * MAGLEV_HASH
                  */
-                 // auto permutations = i["args"]["permutations"].as<int>(128);
-                 // execute<MaglevEngine>("maglev", handler, yaml, permutations);
+                auto permutations = i["args"]["permutations"].as<int>(128);
+                // execute<MaglevEngine>(handler, yaml, "maglev", permutations);
             } else if (algorithm == "memento") {
-                execute<MementoEngine<boost::unordered_flat_map>>("memento", handler, yaml);
+                execute<MementoEngine<boost::unordered_flat_map>>(handler, yaml, "memento");
             } else if (algorithm == "multi-probe") {
                 /*
-                 * MULTIPROBE
+                 * MULTIPROBE_HASH
                  */
-                // auto probes = i["args"]["probes"].as<int>(21);
-                // execute<MultiProbeEngine>("multi-probe", handler, yaml, probes);
+                auto probes = i["args"]["probes"].as<int>(21);
+                // execute<MultiprobeEngine>(handler, yaml, "multi-probe", probes);
             } else if (algorithm == "power") {
                 /*
-                 * POWER
+                 * POWER_HASH
                  */
-                execute<PowerEngine>("power", handler, yaml);
+                execute<PowerEngine>(handler, yaml, "power");
             } else if (algorithm == "rendezvous") {
                 /*
-                 * RENDEZVOUS
+                 * RENDEZVOUS_HASH
                  */
-                // execute<RendezvousEngine>("rendezvous", handler, yaml);
+                // execute<RendezvousEngine>(handler, yaml, "rendezvous");
             } else if (algorithm == "ring") {
                 /*
-                 * RING
+                 * RING_HASH
                  */
-                // auto virtualNodes = i["args"]["virtualNodes"].as<int>(1000);
-                // execute<RingEngine>("ring", handler, yaml, virtualNodes);
+                auto virtualNodes = i["args"]["virtualNodes"].as<int>(1000);
+                // execute<RingEngine>(handler, yaml, "ring", virtualNodes);
             }
         }
     } catch (const YAML::Exception &e) {
