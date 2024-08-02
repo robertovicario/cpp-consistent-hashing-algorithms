@@ -38,7 +38,9 @@ double computeLookupTime(const YAML::Node& yaml, const string& algorithm, uint32
     vector<double> results;
     for (uint32_t i = 0; i < initNodes; i++) {
         auto start{high_resolution_clock::now()};
+
         engine.getBucketCRC32c(rand(), rand());
+
         auto end{high_resolution_clock::now()};
         auto duration = duration_cast<nanoseconds>(end - start).count();
 
