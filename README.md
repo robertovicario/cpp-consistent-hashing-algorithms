@@ -71,19 +71,24 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
 ## Instructions
 
 1. Clone the repository and navigate to the cloned repository:
+
     ```sh
     git clone https://github.com/robertovicario/cpp-consistent-hashing-algorithms.git
     cd cpp-consistent-hashing-algorithms
     ```
 
 2. Run repository setup:
+
    - vcpkg:
+   
        ```sh
        # Ensure scripts has executable permissions:
        # chmod +x repo.sh
        ./repo.sh
        ```
+     
    - CMake:
+   
        ```sh
        # Ensure scripts has executable permissions:
        # chmod +x cmake.sh
@@ -91,17 +96,21 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
        ```
 
 3. Build the project with Ninja:
+
     ```sh
     cd build
     ninja
     ```
 
 4. Start the framework:
+
    - Default configuration:
+   
        ```sh
        ./main
        ```
    - Custom configuration:
+   
        ```sh
        ./main <your_config>.yaml
        ```
@@ -115,9 +124,11 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
 1. Insert the algorithm name into any configuration file located in `configs/`.
 2. Implement your algorithm in `Algorithms/your_algo/`. Keep in mind that the system employs C++ templates to integrate the algorithms into the loop.
 3. Integrate a new execution routine into `Main.cpp`. Append a new `else if` branch and incorporate your engine using:
+    
     ```cpp
     execute<YourEngine>(handler, yaml, "your_algo");
     ```
+   
    If your engine requires additional parameters, include them as follows:
 
     ```cpp
@@ -129,7 +140,8 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
 1. Insert the benchmark name into any configuration file located in `configs/`.
 2. Implement the benchmark in `Benchmarks/`. Note that the system utilizes C++ templates for benchmark integration into the loop.
 3. Integrate a new benchmark routine into `Benchmarks/Routine.hpp`. Append a new `else if` branch and incorporate your engine using:
-    ```cpp
+    
+   ```cpp
     printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
     results[l] = computeYourBenchmark<Engine>(yaml, algorithm, initNodes, args...); 
     ```
