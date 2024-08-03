@@ -18,7 +18,7 @@ private:
     string pathCsv;
 
 public:
-    HandlerImpl(const string& pathCsv = "/tmp/data.csv") : pathCsv(pathCsv) {
+    HandlerImpl(const string& pathCsv) : pathCsv(pathCsv) {
         /*
          * Configuring the system.
          */
@@ -32,11 +32,11 @@ public:
 
         if (stat(dir.c_str(), &info) != 0) {
             if (mkdir(dir.c_str(), 0777) != 0) {
-                cerr << "# [ERR] ----- Unable to configure the directory." << endl;
+                cout << "# [ERR] ----- Unable to configure the directory." << endl;
                 exit(1);
             }
         } else if (!(info.st_mode & S_IFDIR)) {
-            cerr << "# [ERR] ----- Unable to configure the directory." << endl;
+            cout << "# [ERR] ----- Unable to configure the directory." << endl;
             exit(1);
         }
 
@@ -60,8 +60,9 @@ public:
         if (file.is_open()) {
             file << "algorithm,benchmark,hash_function,init_nodes,iterations,mean,var,stddev\n";
             cout << "# [SYS] ----- CSV file created successfully: " << filename << endl;
+            cout << "#" << endl;
         } else {
-            cerr << "# [ERR] ----- Unable to create CSV file." << endl;
+            cout << "# [ERR] ----- Unable to create CSV file." << endl;
             exit(1);
         }
     }
@@ -75,16 +76,14 @@ public:
         if (!file.is_open()) {
             file.open(pathCsv, ios::out | ios::app);
             if (!file.is_open()) {
-                cerr << "# [ERR] ----- Unable to open CSV file for updating." << endl;
-                return;
+                cout << "# [ERR] ----- Unable to update data." << endl;
+                exit(1);
             }
         }
 
         file << algorithm << "," << benchmark << "," << hashFunction << "," << initNodes << "," << iterationsRun << "," << mean << "," << var << "," << stddev << "\n";
-
         cout << "# [SYS] ----- Data updated successfully." << endl;
-
-        file.flush(); // Ensure data is written to the file
+        file.flush();
     }
 
     ~HandlerImpl() {

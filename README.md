@@ -119,6 +119,7 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
     execute<YourEngine>(handler, yaml, "your_algo");
     ```
    If your engine requires additional parameters, include them as follows:
+
     ```cpp
     execute<YourEngine>(handler, yaml, "your_algo", param1, param2, ..., paramN);
     ```
@@ -135,7 +136,8 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
 
 ## Testing
 
-###
+### Single Algorithm Routine
+
 Differently by the framework in Java, it was implemented a functionality to run the benchmark routine for a single algorithm. This is the command to start the framework:
 
 ```sh

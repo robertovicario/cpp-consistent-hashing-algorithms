@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
          * This line could be removed only if change the standard of the 'output-folder' from '/dir' to 'dir/'.
          */
         pathCsv = pathCsv.substr(1);
-        HandlerImpl handler = HandlerImpl(pathCsv);
+        auto* handler = new HandlerImpl(pathCsv);
 
         cout << "# [SYS] ----- ****************************" << endl;
         cout << "# [SYS] ----- ***** STARTING ROUTINE *****" << endl;
@@ -70,18 +70,18 @@ int main(int argc, char* argv[]) {
                  * ANCHOR
                  */
                 auto capacity = i["args"]["capacity"].as<int>(10);
-                execute<AnchorEngine>(handler, yaml, "anchor", capacity);
+                execute<AnchorEngine>(*handler, yaml, "anchor", capacity);
             } else if (algorithm == "dx") {
                 /*
                  * DX
                  */
                 auto capacity = i["args"]["capacity"].as<int>(10);
-                execute<DxEngine>(handler, yaml, "dx", capacity);
+                execute<DxEngine>(*handler, yaml, "dx", capacity);
             } else if (algorithm == "jump") {
                 /*
                  * JUMP
                  */
-                execute<JumpEngine>(handler, yaml, "jump");
+                execute<JumpEngine>(*handler, yaml, "jump");
             } else if (algorithm == "maglev") {
                 /*
                  * MAGLEV
@@ -92,7 +92,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * MEMENTO
                  */
-                execute<MementoEngine<boost::unordered_flat_map>>(handler, yaml, "memento");
+                execute<MementoEngine<boost::unordered_flat_map>>(*handler, yaml, "memento");
             } else if (algorithm == "multi-probe") {
                 /*
                  * MULTIPROBE
@@ -103,7 +103,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * POWER
                  */
-                execute<PowerEngine>(handler, yaml, "power");
+                execute<PowerEngine>(*handler, yaml, "power");
             } else if (algorithm == "rendezvous") {
                 /*
                  * RENDEZVOUS
@@ -121,6 +121,8 @@ int main(int argc, char* argv[]) {
         if (flag) {
             cout << "#" << endl;
         }
+
+        delete handler;
     } catch (const YAML::Exception &e) {
         cout << "# [ERR] ----- Exception: " << e.what() << endl;
         return 1;
