@@ -1,5 +1,5 @@
 /**
- * @author Roberto Vicario
+ * @author Amos Brocco, Roberto Vicario
  */
 
 #pragma once
@@ -36,20 +36,21 @@ double getAllocatedMemory() {
 template <typename Engine, typename... Args>
 double computeMemoryUsage(const YAML::Node& yaml, const string& algorithm, u_int32_t initNodes, Args... args) {
     /*
-     * Initializing the engine.
-     */
-    double initalMemory = getAllocatedMemory();
-    Engine engine(initNodes, args...);
-
-    /*
      * Starting the measuring.
      */
+    double initalMemory = getAllocatedMemory();
+
+    /*
+     * Initializing the engine.
+     */
+    Engine engine(initNodes, args...);
+
     double finalMemory = getAllocatedMemory();
-    double size = finalMemory - initalMemory;
+    double memoryUsage = finalMemory - initalMemory;
 
     /*
      * Returning the results.
      */
-    cout << "# [LOG] ----- @" << algorithm << "\t>_ memory_usage = " << size << " B" << endl;
-    return size;
+    cout << "# [LOG] ----- @" << algorithm << "\t>_ memory_usage = " << memoryUsage << " B" << endl;
+    return memoryUsage;
 }

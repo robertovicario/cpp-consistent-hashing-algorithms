@@ -53,7 +53,7 @@ static void execute(HandlerImpl& handler, YAML::Node yaml, const string& algorit
         /*
          * HASH_FUNCTIONS
          *
-         * ![WARNING]
+         * [!WARNING]
          * For this version of the software, we have used only "crc32".
          */
         // for (auto j: yaml["common"]["hash-functions"]) {

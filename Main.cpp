@@ -43,11 +43,10 @@ int main(int argc, char* argv[]) {
         pathCsv += "/results.csv";
 
         /*
-         * ![WARNING]
+         * [!WARNING]
          * This line could be removed only if change the standard of the 'output-folder' from '/dir' to 'dir/'.
          */
         pathCsv = pathCsv.substr(1);
-
         HandlerImpl handler = HandlerImpl(pathCsv);
 
         cout << "# [SYS] ----- ****************************" << endl;
@@ -68,48 +67,51 @@ int main(int argc, char* argv[]) {
 
             if (algorithm == "anchor") {
                 /*
-                 * ANCHOR_HASH
+                 * ANCHOR
                  */
                 auto capacity = i["args"]["capacity"].as<int>(10);
                 execute<AnchorEngine>(handler, yaml, "anchor", capacity);
             } else if (algorithm == "dx") {
                 /*
-                 * DX_HASH
+                 * DX
                  */
                 auto capacity = i["args"]["capacity"].as<int>(10);
                 execute<DxEngine>(handler, yaml, "dx", capacity);
             } else if (algorithm == "jump") {
                 /*
-                 * JUMP_HASH
+                 * JUMP
                  */
                 execute<JumpEngine>(handler, yaml, "jump");
             } else if (algorithm == "maglev") {
                 /*
-                 * MAGLEV_HASH
+                 * MAGLEV
                  */
                 auto permutations = i["args"]["permutations"].as<int>(128);
                 // execute<MaglevEngine>(handler, yaml, "maglev", permutations);
             } else if (algorithm == "memento") {
+                /*
+                 * MEMENTO
+                 */
                 execute<MementoEngine<boost::unordered_flat_map>>(handler, yaml, "memento");
             } else if (algorithm == "multi-probe") {
                 /*
-                 * MULTIPROBE_HASH
+                 * MULTIPROBE
                  */
                 auto probes = i["args"]["probes"].as<int>(21);
                 // execute<MultiprobeEngine>(handler, yaml, "multi-probe", probes);
             } else if (algorithm == "power") {
                 /*
-                 * POWER_HASH
+                 * POWER
                  */
                 execute<PowerEngine>(handler, yaml, "power");
             } else if (algorithm == "rendezvous") {
                 /*
-                 * RENDEZVOUS_HASH
+                 * RENDEZVOUS
                  */
                 // execute<RendezvousEngine>(handler, yaml, "rendezvous");
             } else if (algorithm == "ring") {
                 /*
-                 * RING_HASH
+                 * RING
                  */
                 auto virtualNodes = i["args"]["virtualNodes"].as<int>(1000);
                 // execute<RingEngine>(handler, yaml, "ring", virtualNodes);

@@ -43,7 +43,7 @@ double computeMonotonicity(const YAML::Node& yaml, const string& algorithm, u_in
     /*
      * Starting the measuring.
      */
-    uint32_t* bucket_status = new uint32_t[initNodes]();
+    auto* bucket_status = new uint32_t[initNodes]();
     for (uint32_t i = 0; i < initNodes; i++) {
         bucket_status[i] = 1;
     }
@@ -51,7 +51,7 @@ double computeMonotonicity(const YAML::Node& yaml, const string& algorithm, u_in
     /*
      * Selecting the percentage of nodes to remove.
      */
-    uint32_t numRemovals = static_cast<uint32_t>(initNodes * fraction);
+    auto numRemovals = static_cast<uint32_t>(initNodes * fraction);
     for (int i = 0; i < numRemovals;) {
         uint32_t removed = rand() % initNodes;
         if (bucket_status[removed] == 1) {
