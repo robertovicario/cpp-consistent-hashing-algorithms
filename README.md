@@ -148,9 +148,17 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
 
 ## Testing
 
+### Unit Testing
+
+To verify the configuration, unit tests have been implemented. To run a test, navigate to `build` and use the following command:
+
+```sh
+./unit_test
+```
+
 ### Single Algorithm Routine
 
-Differently by the framework in Java, it was implemented a functionality to run the benchmark routine for a single algorithm. This is the command to start the framework:
+Differently by the framework in Java, it was implemented a functionality to run the benchmark routine for a single algorithm. Navigate to `build` and use this command to start the framework:
 
 ```sh
 ./main <your_config>.yaml <algorithm_name>
@@ -179,5 +187,5 @@ This project is distributed under [GNU General Public License version 3](https:/
 
 ## Contacts
 
-- **Supervisor:** Amos Brocco: @slashdotted
-- **Student:** Roberto Vicario: @robertovicario
+- **Supervisor:** Amos Brocco: [@slashdotted](https://github.com/slashdotted)
+- **Student:** Roberto Vicario: [@robertovicario](https://github.com/robertovicario)
