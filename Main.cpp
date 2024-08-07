@@ -21,13 +21,10 @@ int main(int argc, char* argv[]) {
          * Handling the terminal usage.
          */
         string arg1 = "default.yaml";
-        string arg2;
+
 
         if (argc == 2) {
             arg1 = argv[1];
-        } else if (argc == 3) {
-            arg1 = argv[1];
-            arg2 = argv[2];
         }
 
         /*
@@ -80,7 +77,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * MAGLEV
                  */
-                auto permutations = i["args"]["permutations"].as<int>(128);
+                // auto permutations = i["args"]["permutations"].as<int>(128);
                 // execute<MaglevEngine>(handler, yaml, "maglev", permutations);
             } else if (algorithm == "memento") {
                 /*
@@ -91,7 +88,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * MULTIPROBE
                  */
-                auto probes = i["args"]["probes"].as<int>(21);
+                // auto probes = i["args"]["probes"].as<int>(21);
                 // execute<MultiprobeEngine>(handler, yaml, "multi-probe", probes);
             } else if (algorithm == "power") {
                 /*
@@ -107,7 +104,7 @@ int main(int argc, char* argv[]) {
                 /*
                  * RING
                  */
-                auto virtualNodes = i["args"]["virtualNodes"].as<int>(1000);
+                // auto virtualNodes = i["args"]["virtualNodes"].as<int>(1000);
                 // execute<RingEngine>(handler, yaml, "ring", virtualNodes);
             }
         }

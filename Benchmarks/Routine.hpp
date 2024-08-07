@@ -75,8 +75,8 @@ static void execute(HandlerImpl& handler, YAML::Node yaml, const string& algorit
                         /*
                          * BALANCE
                          */
-                        // printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[l] = computeBalance<Engine>(yaml, algorithm, initNodes, args...);
+                        printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[l] = computeBalance<Engine>(yaml, algorithm, initNodes, args...);
                     } else if (benchmark == "init-time") {
                         /*
                          * INIT_TIME

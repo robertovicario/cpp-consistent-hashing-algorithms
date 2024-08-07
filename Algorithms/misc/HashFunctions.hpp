@@ -12,7 +12,6 @@ static inline uint32_t crc32(uint32_t key, uint32_t seed) {
         return seed;
     #elif __aarch64__
         uint32_t crc = 0xFFFFFFFF;
-
         __asm__ volatile(
             "crc32cx %w0, %w0, %x1"
             : "+r" (crc)
