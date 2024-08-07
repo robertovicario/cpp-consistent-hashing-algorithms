@@ -99,14 +99,14 @@ static void execute(HandlerImpl& handler, YAML::Node yaml, const string& algorit
                         /*
                          * MONOTONICITY
                          */
-                        // printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[l] = computeMonotonicity<Engine>(yaml, algorithm, initNodes, args...);
+                        printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[l] = computeMonotonicity<Engine>(yaml, algorithm, initNodes, args...);
                     } else if (benchmark == "resize-balance") {
                         /*
                          * RESIZE_BALANCE
                          */
-                        // printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
-                        // results[l] = computeResizeBalance<Engine>(yaml, algorithm, initNodes, args...);
+                        printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
+                        results[l] = computeResizeBalance<Engine>(yaml, algorithm, initNodes, args...);
                     } else if (benchmark == "resize-time") {
                         /*
                          * RESIZE_TIME

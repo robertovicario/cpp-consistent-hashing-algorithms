@@ -57,8 +57,6 @@ class AnchorHash {
         // Set initial set sizes
         M = a;
         N = w;
-
-        memory += sizeof(uint32_t) * (4 * a) + sizeof(A) + sizeof(W) + sizeof(L) + sizeof(K) + sizeof(M) + sizeof(N) + sizeof(memory);
     };
 
     ~AnchorHash () {
@@ -150,13 +148,7 @@ class AnchorHash {
         return b;
     };
 
-    uint32_t getMemoryUsage() {
-        return memory;
-    };
-
 private:
-    uint32_t memory{};
-
     // Anchor
     uint32_t *A;
 

@@ -16,7 +16,7 @@ private:
     uint32_t size{};
 
 public:
-    DxHash(uint32_t n_total, uint32_t n_working) : size(n_total), num_working(n_working), nodes() {
+    DxHash(uint32_t n_total, uint32_t n_working): size(n_total), num_working(n_working), nodes() {
         nodes.resize(size);
 
         uint32_t i;

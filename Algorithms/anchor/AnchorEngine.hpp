@@ -24,7 +24,7 @@ private:
 
 public:
     AnchorEngine(uint32_t anchor_set, uint32_t working_set)
-        : anchor{anchor_set, working_set}
+        : anchor{working_set * anchor_set, anchor_set}
     {}
 
     /**
