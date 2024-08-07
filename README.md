@@ -146,24 +146,6 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
     results[l] = computeYourBenchmark<Engine>(yaml, algorithm, initNodes, args...); 
     ```
 
-## Testing
-
-### Unit Testing
-
-To verify the configuration, unit tests have been implemented. To run a test, navigate to `build` and use the following command:
-
-```sh
-./unit_test
-```
-
-### Single Algorithm Routine
-
-Differently by the framework in Java, it was implemented a functionality to run the benchmark routine for a single algorithm. Navigate to `build` and use this command to start the framework:
-
-```sh
-./main <your_config>.yaml <algorithm_name>
-```
-
 ## Licence
 
 This project is distributed under [GNU General Public License version 3](https://opensource.org/license/gpl-3-0). You can find the complete text of the license in the project repository.
