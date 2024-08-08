@@ -1,10 +1,6 @@
 # cpp-consistent-hashing-algorithms
 
-## Overview
-
-C++ implementations of the most popular and best performing consistent hashing algorithms for non-peer-to-peer contexts.
-
-### Abstract
+## Abstract
 
 Within the scope of a research project, conducted under the guidance of Massimo Coluzzi, a framework in Java was developed for benchmarking state-of-the-art consistent hashing algorithms. In order to explore the performance of these algorithms using different languages, I was tasked with creating a version in C++. This version currently encompasses only a partial selection of the technologies considered in the ISIN framework. However, the tool has been designed adaptively to easily implement new algorithms and benchmarks. The software remains consistent with the behavior of its Java counterpart. It is designed to operate via a command-line interface and to save benchmark results in a CSV file, utilizing YAML files for parameter configuration.
 
