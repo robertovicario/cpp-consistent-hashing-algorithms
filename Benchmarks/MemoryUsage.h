@@ -8,45 +8,74 @@
 
 using namespace std;
 
-double totalAllocated = 0;
-double totalFreed = 0;
+static unsigned long allocations{0};
+static unsigned long deallocations{0};
+static unsigned long allocated{0};
+static unsigned long deallocated{0};
+static unsigned long maximum{0};
 
-void* operator new(size_t size) {
-    totalAllocated += size;
-    return malloc(size);
+void *operator new(size_t size) {
+    void *p = malloc(size);
+    if (p) {
+        allocations += 1;
+        allocated += size;
+        maximum = allocated > maximum ? allocated : maximum;
+    }
+
+    return p;
 }
 
-void operator delete(void* ptr) noexcept {
+void *operator new[](size_t size) {
+    void *p = malloc(size);
+    if (p) {
+        allocations += 1;
+        allocated += size;
+        maximum = allocated > maximum ? allocated : maximum;
+    }
+
+    return p;
+}
+
+void operator delete(void *ptr) noexcept {
+    deallocations += 1;
     free(ptr);
 }
 
-void* operator new[](size_t size) {
-    totalAllocated += size;
-    return malloc(size);
-}
-
-void operator delete[](void* ptr) noexcept {
+void operator delete[](void *ptr) noexcept {
+    deallocations += 1;
     free(ptr);
 }
 
-double getAllocatedMemory() {
-    return totalAllocated - totalFreed;
+void operator delete(void *ptr, std::size_t size) noexcept {
+    deallocations += 1;
+    deallocated += size;
+    free(ptr);
+}
+
+void operator delete[](void *ptr, std::size_t size) noexcept {
+    deallocations += 1;
+    deallocated += size;
+    free(ptr);
+}
+
+double getMemoryUsage() {
+    return static_cast<double>(allocated);
 }
 
 template <typename Engine, typename... Args>
-double computeMemoryUsage(const YAML::Node& yaml, const string& algorithm, u_int32_t initNodes, Args... args) {
+double computeMemoryUsage(const YAML::Node& yaml, const string& algorithm, uint32_t initNodes, Args... args) {
     /*
      * Starting the measuring.
      */
-    double initalMemory = getAllocatedMemory();
+    double initialMemory = getMemoryUsage();
 
     /*
      * Initializing the engine.
      */
     Engine engine(initNodes, args...);
 
-    double finalMemory = getAllocatedMemory();
-    double memoryUsage = finalMemory - initalMemory;
+    double finalMemory = getMemoryUsage();
+    double memoryUsage = finalMemory - initialMemory;
 
     /*
      * Returning the results.
