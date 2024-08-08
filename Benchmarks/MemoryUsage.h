@@ -5,6 +5,7 @@
 #pragma once
 
 #include <iostream>
+#include <random>
 
 using namespace std;
 
@@ -66,26 +67,44 @@ void resetMemoryUsage() noexcept {
     maximum = 0;
 }
 
-double getMemoryUsage() {
-    return static_cast<double>(allocated);
+long getMemoryUsage() {
+    return allocated;
 }
 
 template <typename Engine, typename... Args>
-double computeMemoryUsage(const YAML::Node& yaml, const string& algorithm, uint32_t initNodes, Args... args) {
+long computeMemoryUsage(const YAML::Node& yaml, const string& algorithm, uint32_t initNodes, Args... args) {
     /*
      * Starting the measuring.
      */
-    double initialMemory = getMemoryUsage();
+    long initialMemory = getMemoryUsage();
+
+    auto* bucket_status = new uint32_t[initNodes]();
+    for (uint32_t i = 0; i < initNodes; i++) {
+        bucket_status[i] = 1;
+    }
 
     /*
      * Initializing the engine.
      */
     Engine engine(initNodes, args...);
 
-    double finalMemory = getMemoryUsage();
+    /*
+     * Selecting the percentage of nodes to remove.
+     */
+    auto numRemovals = static_cast<uint32_t>(initNodes * 0.1);
+    for (int i = 0; i < numRemovals;) {
+        uint32_t removed = rand() % initNodes;
+        if (bucket_status[removed] == 1) {
+            auto rnode = engine.removeBucket(removed);
+            bucket_status[rnode] = 0;
+            i++;
+        }
+    }
+
+    long finalMemory = getMemoryUsage();
     resetMemoryUsage();
 
-    double memoryUsage = finalMemory - initialMemory;
+    long memoryUsage = finalMemory - initialMemory;
 
     /*
      * Returning the results.
