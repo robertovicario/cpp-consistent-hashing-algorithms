@@ -58,6 +58,14 @@ void operator delete[](void *ptr, std::size_t size) noexcept {
     free(ptr);
 }
 
+void resetMemoryUsage() noexcept {
+    allocations = 0;
+    deallocations = 0;
+    allocated = 0;
+    deallocated = 0;
+    maximum = 0;
+}
+
 double getMemoryUsage() {
     return static_cast<double>(allocated);
 }
@@ -75,6 +83,8 @@ double computeMemoryUsage(const YAML::Node& yaml, const string& algorithm, uint3
     Engine engine(initNodes, args...);
 
     double finalMemory = getMemoryUsage();
+    resetMemoryUsage();
+
     double memoryUsage = finalMemory - initialMemory;
 
     /*
