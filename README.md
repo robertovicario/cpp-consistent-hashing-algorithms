@@ -122,12 +122,18 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
 3. Integrate a new execution routine into `Main.cpp`. Append a new `else if` branch and incorporate your engine using:
     
     ```cpp
+   /*
+    * NEW_ALGORITHM
+    */
     execute<YourEngine>(handler, yaml, "your_algo");
     ```
    
    If your engine requires additional parameters, include them as follows:
 
     ```cpp
+   /*
+    * NEW_ALGORITHM
+    */
     execute<YourEngine>(handler, yaml, "your_algo", param1, param2, ..., paramN);
     ```
 
@@ -138,6 +144,9 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
 3. Integrate a new benchmark routine into `Benchmarks/Routine.hpp`. Append a new `else if` branch and incorporate your engine using:
     
    ```cpp
+   /*
+    * NEW_BENCHMARK
+    */
     printInfo(l, algorithm, benchmark, hashFunction, initNodes, iterationsRun);
     results[l] = computeYourBenchmark<Engine>(yaml, algorithm, initNodes, args...); 
     ```
