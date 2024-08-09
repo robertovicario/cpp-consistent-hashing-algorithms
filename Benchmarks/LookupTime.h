@@ -34,7 +34,7 @@ double computeLookupTime(const YAML::Node& yaml, const string& algorithm, uint32
     /*
      * Starting the measuring.
      */
-    vector<double> results;
+    double sumTime = 0;
     for (uint32_t i = 0; i < initNodes; i++) {
         auto start{high_resolution_clock::now()};
 
@@ -43,18 +43,10 @@ double computeLookupTime(const YAML::Node& yaml, const string& algorithm, uint32
         auto end{high_resolution_clock::now()};
         auto duration = duration_cast<nanoseconds>(end - start).count();
 
-        results.push_back(static_cast<double>(duration));
+        sumTime += duration;
     }
 
-    /*
-     * Normalizing the taken measures.
-     */
-    double sumTime = 0;
-    for (auto i : results) {
-        sumTime += i;
-    }
-
-    double meanTime = sumTime / results.size();
+    double meanTime = sumTime / initNodes;
 
     /*
      * Handling the time unit.

@@ -83,6 +83,8 @@ long computeMemoryUsage(const YAML::Node& yaml, const string& algorithm, uint32_
         bucket_status[i] = 1;
     }
 
+    resetMemoryUsage();
+
     /*
      * Initializing the engine.
      */

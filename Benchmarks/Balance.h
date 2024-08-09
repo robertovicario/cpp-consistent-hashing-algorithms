@@ -32,7 +32,7 @@ double computeBalance(const YAML::Node& yaml, const string& algorithm, u_int32_t
      */
     random_device rd;
     mt19937 rng(rd());
-    size_t numKeys = 1 * initNodes;
+    size_t numKeys = initNodes * keyMultiplier;
     vector<uint32_t> absorbed_keys(initNodes, 0);
 
     for (size_t i = 0; i < numKeys; i++) {
