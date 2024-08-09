@@ -165,5 +165,5 @@ This project is distributed under [GNU General Public License version 3](https:/
 
 ## Contacts
 
-- **Supervisor:** Amos Brocco: [@slashdotted](https://github.com/slashdotted)
-- **Student:** Roberto Vicario: [@robertovicario](https://github.com/robertovicario)
+- **Supervisor:** Amos Brocco [@slashdotted](https://github.com/slashdotted)
+- **Student:** Roberto Vicario [@robertovicario](https://github.com/robertovicario)
