@@ -57,7 +57,7 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
 
 <table>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/robertovicario/cpp-consistent-hashing-algorithms/main/docs/Control_Flow.png" alt="Control_Flow" width=512></td>
+        <td><img src="https://raw.githubusercontent.com/robertovicario/cpp-consistent-hashing-algorithms/main/docs/1.png" alt="1" width=512></td>
     </tr>
     <tr>
         <td align="center">Figure 1: Exploring the control flow of the benchmark routine.</td>
