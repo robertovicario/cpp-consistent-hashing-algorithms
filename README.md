@@ -31,7 +31,7 @@ Some engines are not yet implemented in this project but are already configured 
 
 ## Benchmarks
 
-As outlined in _"A survey and comparison of consistent hashing algorithms" by Coluzzi et al. (2023)_, here is a concise overview of the benchmarks utilized:
+As outlined in _"Consistently Faster: A Survey and Fair Comparison of Consistent Hashing Algorithms" by Coluzzi et al. (2023)_, here is a concise overview of the benchmarks utilized:
 
 - **Balance:** The ability of the algorithm to spread the keys evenly across the cluster nodes.
 
