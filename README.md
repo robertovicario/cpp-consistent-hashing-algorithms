@@ -151,7 +151,7 @@ Figure 1 shows a UML sequence diagram to explain how the benchmark routine proce
     results[l] = computeYourBenchmark<Engine>(yaml, algorithm, initNodes, args...); 
     ```
 
-## Licence
+## License
 
 This project is distributed under [GNU General Public License version 3](https://opensource.org/license/gpl-3-0). You can find the complete text of the license in the project repository.
 
